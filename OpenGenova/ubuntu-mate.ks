@@ -124,7 +124,8 @@ libreoffice-style-breeze
 
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
-wget -q http://192.168.96.12/OpenGenova/theme/ubuntu-mate.png
+# set the right theme URL
+wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/ubuntu-mate.png
 
 # customize MATE theme layout
 mkdir -p /etc/dconf/db/mate.d/lock/
