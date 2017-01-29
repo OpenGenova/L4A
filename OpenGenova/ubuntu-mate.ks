@@ -122,9 +122,22 @@ libreoffice-style-breeze
 
 %post
 
+cd /tmp
+echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list
+wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
+apt-key add - < Release.key
+rm -f Release.key
+apt-get update
+apt-get install arc-theme
+
+wget -O Ultra-Flat-Orange.deb https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/ultra-flat-icons-orange_1.3.2~trusty~Noobslab.com_all.deb
+dpkg -i Ultra-Flat-Orange.deb;
+rm -f Ultra-Flat-Orange.deb
+
+cd -
+
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
-# set the right theme URL
 wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/ubuntu-mate.png
 
 # customize MATE theme layout
@@ -168,6 +181,7 @@ color-scheme='Ambiant-MATE'
 
 [org/mate/caja/desktop]
 computer-icon-visible=true
+trash-icon-visible=true
 
 [org/mate/marco/general]
 num-workspaces=1
