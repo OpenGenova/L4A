@@ -78,6 +78,12 @@ part / --fstype ext4 --size 1 --grow --asprimary
 part swap --size 1024 
 # part /boot --fstype ext4 --size 256 --asprimary 
 
+# By default the installer requires that repositories be authenticated
+# using a known gpg key. This setting can be used to disable that
+# authentication. Warning: Insecure, not recommended.
+#d-i debian-installer/allow_unauthenticated boolean true
+
+
 #Setup NTP
 preseed clock-setup/ntp boolean true
 preseed clock-setup/ntp-server string pool.ntp.org
@@ -177,7 +183,7 @@ picture-filename='/usr/share/OpenGenova/theme/ubuntu-mate.png'
 [org/mate/pluma]
 auto-indent=true
 insert-spaces=true
-color-scheme='Ambiant-MATE'
+color-scheme='Arc'
 
 [org/mate/caja/desktop]
 computer-icon-visible=true
@@ -201,12 +207,12 @@ mode='blank-only'
 themes='[]'
 
 [org/mate/desktop/interface]
-gtk-theme='TraditionalOk'
-icon-theme='ubuntu-mono-light'
+gtk-theme='Arc'
+icon-theme='Ultra-Flat-Orange'
 
 [org/mate/marco/general]
 num-workspaces=1
-theme='TraditionalOk'
+theme='Arc'
 compositing-manager=false
 
 [org/mate/panel/general]
