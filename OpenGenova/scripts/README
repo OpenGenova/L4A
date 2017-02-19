@@ -1,0 +1,24 @@
+* requires *
+python 2.x
+python-yaml
+python-notify
+pyhton-feedparser
+
+via package manager or pip
+
+*Configuration file*
+add feeds into
+~/.rssNotifier.yaml 
+like following
+channels:
+- enabled: true
+  name: barsport
+  url: http://xliguria.it/rubriche/barsport/feed/
+- enabled: true
+  name: ladyp
+  url: http://xliguria.it/rubriche/ladyp/feed/
+- enabled: false
+  name: pausacafe
+  url: http://xliguria.it/rubriche/pausacafe/feed/ 
+
+Pay attention that the example into the repository does not contains the first dot "." into the name.

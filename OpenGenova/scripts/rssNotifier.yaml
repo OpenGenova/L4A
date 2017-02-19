@@ -1,0 +1,10 @@
+channels:
+- enabled: true
+  name: barsport
+  url: http://xliguria.it/rubriche/barsport/feed/
+- enabled: true
+  name: ladyp
+  url: http://xliguria.it/rubriche/ladyp/feed/
+- enabled: false
+  name: pausacafe
+  url: http://xliguria.it/rubriche/pausacafe/feed/
