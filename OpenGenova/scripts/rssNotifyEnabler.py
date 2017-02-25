@@ -1,0 +1,121 @@
+#!/usr/bin/python
+'''
+rssNotifyEnabler allow to enable rss feeds for rssNotifier
+
+License: GPLv3
+
+Author:  Angelo Naselli <anaselli@linux.it>
+'''
+
+
+import sys
+import yaml
+
+from os.path import expanduser, join
+import os
+
+
+class Config() :
+    ''' Config reads and writes the rssNotifier self.configuration,
+    such as ~/.rssNotifier.yaml
+    '''
+    def __init__(self) :
+        self.content    = None
+        self._project   = 'rssNotifier'
+        self._fileName  = "." + self._project + ".yaml"
+        pathdir = os.path.expanduser("~")
+        self._pathName = os.path.join(pathdir, self._fileName)
+
+    '''
+    load self.configuration file into content and return it
+    '''
+    def load(self) :
+        try:
+            with open(self._pathName, 'r') as ymlfile:
+                self.content = yaml.load(ymlfile)
+                return self.content
+        except IOError as e:
+            print ("Skipped exception: <%s> " % str(e))
+            return None
+
+        return None
+
+    '''
+    write content into the self.configuration file
+    '''
+    def write(self) :
+        with open(self._pathName, 'w') as outfile:
+            yaml.dump(self.content, outfile, default_flow_style=False)
+
+
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+
+class TableWindow(Gtk.Window):
+
+  def __init__(self):
+    self.config = Config()
+    if self.config.load() :
+      print ("ok")
+      if "channels" in self.config.content.keys():
+        Gtk.Window.__init__(self, title="Abilitazione notifiche")
+        self.set_border_width(10)
+
+        box_outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        self.add(box_outer)
+
+        listbox = Gtk.ListBox()
+        listbox.set_selection_mode(Gtk.SelectionMode.NONE)
+        box_outer.pack_start(listbox, True, True, 0)
+        
+        for ch in (sorted(self.config.content["channels"], key=lambda ch: ch['name'])) :
+          if "url" in ch.keys() and "enabled" in ch.keys():
+            if ("name" in ch.keys()) :
+              row = Gtk.ListBoxRow()
+              hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+              row.add(hbox)
+              vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+              hbox.pack_start(vbox, True, True, 0)
+
+              label1 = Gtk.Label(ch['name'], xalign=0)
+              vbox.pack_start(label1, True, True, 0)
+
+              switch = Gtk.Switch()
+              switch.set_active(ch["enabled"])
+              switch.connect("notify::active", self.on_switch_activated, ch)
+              switch.props.valign = Gtk.Align.CENTER
+              hbox.pack_start(switch, False, True, 0)
+
+              listbox.add(row)
+        
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+        box_outer.pack_start(hbox, True, True, 0)
+        button = Gtk.Button.new_with_label("Salva")
+        button.connect("clicked", self.on_Save_clicked)
+        hbox.pack_start(button, True, True, 0)
+
+        button = Gtk.Button.new_with_mnemonic("_Esci")
+        button.connect("clicked", self.on_Exit_clicked)
+        hbox.pack_start(button, True, True, 0)
+          
+  def on_switch_activated(self, switch, gparam, ch):
+    ch["enabled"] = switch.get_active()
+    print("Switch was turned")
+
+  def on_Exit_clicked(self, button):
+    Gtk.main_quit()
+    print("Good bye")
+
+  def on_Save_clicked(self, button):
+    self.config.write()
+    print("Saved")
+        
+if __name__ == "__main__":
+
+  win = TableWindow()
+  win.connect("delete-event", Gtk.main_quit)
+  win.show_all()
+  Gtk.main()
+
+

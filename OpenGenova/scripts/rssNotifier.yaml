@@ -8,3 +8,27 @@ channels:
 - enabled: false
   name: pausacafe
   url: http://xliguria.it/rubriche/pausacafe/feed/
+- enabled: false
+  name: xlevante
+  url: http://xliguria.it/rubriche/xlevante/feed/
+- enabled: false
+  name: mortaioveleni
+  url: http://xliguria.it/rubriche/mortaioveleni/feed/
+- enabled: false
+  name: extrasport
+  url: http://xliguria.it/rubriche/extrasport/feed/
+- enabled: false
+  name: extradoria
+  url: http://xliguria.it/rubriche/extradoria/feed/
+- enabled: false
+  name: extragenoa
+  url: http://xliguria.it/rubriche/extragenoa/feed/
+- enabled: false
+  name: xlive
+  url: http://xliguria.it/rubriche/xlive/feed/
+- enabled: false
+  name: ricetta
+  url: http://xliguria.it/rubriche/ricetta/feed/
+- enabled: true
+  name: xweil
+  url: http://xliguria.it/rubriche/xweil/feed/

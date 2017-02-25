@@ -80,14 +80,18 @@ if __name__ == "__main__":
                         print("no changes")
                     else:
                         title = rss.channel.title
-                        if not last_modified :
-                            entry = rss.entries[-1]
-                            message = '<b>%s</b><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                            sendmessage(title, message)
-                        else:
-                            for entry in d.entries :
-                                message = '<n>%s</n><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                                sendmessage(title, message)
+                        # Let's take the last news only
+                        entry = rss.entries[0]
+                        message = '<b>%s</b><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
+                        sendmessage(title, message)
+                        #if not last_modified :
+                            #entry = rss.entries[0]
+                            #message = '<b>%s</b><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
+                            #sendmessage(title, message)
+                        #else:
+                            #for entry in rss.entries :
+                                #message = '<n>%s</n><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
+                                #sendmessage(title, message)
                         ch["last_update"] = rss.modified
 
                 print (ch)
