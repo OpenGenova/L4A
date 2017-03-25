@@ -277,4 +277,3 @@ EOF
 
 # let's rebuild the database in /etc/dconf/db/mate:
 dconf update
-
