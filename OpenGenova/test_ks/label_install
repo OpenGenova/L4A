@@ -1,0 +1,9 @@
+DEFAULT vesamenu.c32
+timeout 100
+display boot.msg
+menu background splash.png
+menu title Welcome to my awesome installer
+
+label Install new computer
+  kernel ubuntu-installer/amd64/linux
+  append ks=http://ip.local.server/ks.cfg vga=normal initird=ubuntu-installer/amd64/initrd.gz
