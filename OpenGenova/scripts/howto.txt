@@ -1,0 +1,95 @@
+This is required because the script is invoked by cron. Dbus information
+is stored in a file by the following script when a user logs in. Connect
+it to your autostart mechanism of choice.
+
+#!/bin/sh
+touch $HOME/.dbus/Xdbus
+chmod 600 $HOME/.dbus/Xdbus
+env | grep DBUS_SESSION_BUS_ADDRESS > $HOME/.dbus/Xdbus
+echo 'export DBUS_SESSION_BUS_ADDRESS' >> $HOME/.dbus/Xdbus
+exit 0
+
+Add next to a script that needs DBUS_SESSION_BUS_ADDRESS
+if [ -r ~/.dbus/Xdbus ]; then
+  . ~/.dbus/Xdbus
+fi
+
+If you can identify your session next (that use gnome session) is good also via ssh:
+
+if [[ -z $DBUS_SESSION_BUS_ADDRESS ]]; then
+    pgrep "gnome-session" -u "$USER" | while read -r line; do
+        exp=$(cat /proc/$line/environ | grep -z "^DBUS_SESSION_BUS_ADDRESS=")
+        echo export "$exp" > ~/.dbus/Xdbus
+        break
+    done
+    if [[ -f ~/.dbus/Xdbus ]]; then
+        source ~/.dbus/Xdbus
+    fi
+fi
+
+added in .config/autostart a desktop file (see below)
+
+"Enable advance menu" option
+
+    libreoffice - ufficio
+    firefox - internet
+    thunderbird - mail
+    Atril Document Viewer - pdf
+    visualizzatore immagini - mate
+    Engrampa - zip
+    rhythmbox - musica
+    stick note - note ??
+    
+    telegram - messagistica
+    calculator - calcolatrice
+    cattura schermate
+    samba - rete win
+    hardinfo - caratteristiche pc
+    teamviewer - controllo remoto PC (da non rivelare)
+    Ubuntu Software Center
+    Gimp - foto ritocco
+    VLC player - video
+    inkscape - vettoriale
+
+    Sw PC datato +
+    Dropbox
+    Skype
+
+    sofware-center
+    system-config-samba
+
+Pinguy builder 
+https://www.ostechnix.com/pinguy-builder-build-custom-ubuntu-os/
+sudo apt-get install gdebi
+sudo gdebi pinguybuilder_4.3-6_all-beta.deb
+
+
+Pinguy builder - Auto Login Not Working
+If you have VirtualBox installed on the system you are dist/backup. The 'vboxadd' user id is the same as casper. Running this will change caspers user-uid so it isn't the same as vboxadd.
+
+sed -i -e 's@user-uid [0-9]*@user-uid 990@' /usr/share/initramfs-tools/scripts/casper-bottom/*adduser
+
+
+
+## to be added to ks
+# get notifier & co. and copy to /usr/bin
+
+cat <<EOF > /etc/skel/.config/autostart/dbus-env.desktop
+[Desktop Entry]
+Terminal=false
+Type=Application
+Categories=System;Settings;
+Name=DBUS_env
+Comment=Add DBUS environment to a file to be used later
+Exec=dbus_env.sh
+Icon=ubuntu-mate
+OnlyShowIn=MATE;
+StartupNotify=false
+EOF
+
+
+crontab -u opengenova -l > /tmp/og.crontab
+echo "15 * * * *   . ~/.dbus/Xdbus && /usr/bin/python /usr/bin/rssNotifier.py" >> /tmp/og.crontab
+crontab -u opengenova /tmp/og.crontab
+rm -f /tmp/og.crontab
+
