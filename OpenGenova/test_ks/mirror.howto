@@ -1,0 +1,17 @@
+lighttpd:
+dir-listing.activate      = "enable"
+
+mirror:
+use a mirror realized by apt-mirror
+from exanoke using an usb disk with:
+/ubuntu/
+mirror/  skel/  var/
+
+then:
+mount /dev/sdX1 /var/www/html/mirrors
+
+installer:
+host mirror IP (for instance 192.168.1.1)
+path:
+/mirrors/ubuntu/mirror/it.archive.ubuntu.com/ubuntu/
+first "/" is important
