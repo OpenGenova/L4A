@@ -2,12 +2,17 @@ lighttpd:
 dir-listing.activate      = "enable"
 
 mirror:
-use a mirror realized by apt-mirror
-from exanoke using an usb disk with:
-/ubuntu/
+use a mirror realized by apt-mirror, i used it.archive.ubuntu.com.
+
+Using an usb disk with a root directory called /ubuntu/ the following tree should be created, by apt-mirror:
 mirror/  skel/  var/
 
-then:
+Note that for some reasosn i had to add explicitally also in my mirror.list
+deb http://it.archive.ubuntu.com/ubuntu xenial main/debian-installer restricted/debian-installer
+
+Restricted debian-installer is missing and Ubuntu 16.04 mini iso fails to install.
+
+At this point you can mount (change sdX1 with your disk):
 mount /dev/sdX1 /var/www/html/mirrors
 
 installer:
