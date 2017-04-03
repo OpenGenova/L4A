@@ -2,6 +2,7 @@
 #Platform: x86 and x86-64
 #
 
+# fix local mirror hostname and directory
 preseed mirror/country string manual
 preseed mirror/http/hostname string 192.168.56.101
 preseed mirror/http/directory string /mirrors/ubuntu/mirror/it.archive.ubuntu.com/ubuntu/
