@@ -1,0 +1,37 @@
+# https://help.ubuntu.com/community/InstallCDCustomization
+#create  working directories
+mkdir iso-hack iso
+# mount the real ISO
+sudo mount -o loop mini.iso iso
+# copy all into iso-hack or rsync (rsync -av iso/ iso-hack)
+cp -rT iso/* iso-hack/
+
+# change splash.png
+cp -f Path/to/new/splash.png iso-hack/splash.png
+# check that has been changed and that rights are still 0444
+
+#edit boot menu (txt.cfg)
+vi iso-hack/txt.cfg
+
+# add for instance with the right url:
+#label rigenera
+#        menu label ^Rigenera Digitale
+#        kernel linux
+#        append vga=788 ks=https://rigenera.opengenova.org/install/ubuntu-mate.ks initrd=initrd.gz --- quiet 
+
+#remove backup files eventually
+rm -f iso-hack/*~
+
+# building the new hacked mini iso
+#IMAGE=rigenera-mini.iso
+#BUILD=iso-hack/
+#
+#mkisofs -r -V "Rigenera Digitale Ubuntu Install" \
+#            -cache-inodes \
+#            -J -l -b isolinux.bin \
+#            -c boot.cat -no-emul-boot \
+#            -boot-load-size 4 -boot-info-table \
+#            -o $IMAGE $BUILD
+
+sudo mkisofs -r -V "Rigenera Digitale Ubuntu Install" -cache-inodes -J -l -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o rigenera-mini.iso iso-hack/
+
