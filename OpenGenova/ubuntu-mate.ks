@@ -53,20 +53,20 @@ clearpart --all --initlabel
 # - regular: use the usual partition types for your architecture
 # - lvm: use LVM to partition the disk
 # - crypto: use LVM within an encrypted partition
-#preseed partman-auto/method string regular
+preseed partman-auto/method string regular
 
 # You can choose one of the three predefined partitioning recipes:
 # - atomic: all files in one partition
 # - home: separate /home partition
 # - multi: separate /home, /usr, /var, and /tmp partitions
-#preseed partman-auto/choose_recipe select atomic
+preseed partman-auto/choose_recipe select atomic
 
 # This makes partman automatically partition without confirmation, provided
 # that you told it what to do using one of the methods above.
-#preseed partman-partitioning/confirm_write_new_label boolean true
-#preseed partman/choose_partition select finish
-#preseed partman/confirm boolean true
-#preseed partman/confirm_nooverwrite boolean true
+preseed partman-partitioning/confirm_write_new_label boolean true
+preseed partman/choose_partition select finish
+preseed partman/confirm boolean true
+preseed partman/confirm_nooverwrite boolean true
 
 #Advanced partition
 #part /boot --fstype=ext4 --size=500 --asprimary
@@ -74,8 +74,8 @@ clearpart --all --initlabel
 #volgroup vg_mygroup --pesize=4096 pv.aQcByA-UM0N-siuB-Y96L-rmd3-n6vz-NMo8Vr
 #logvol / --fstype=ext4 --name=lv_root --vgname=vg_mygroup --grow --size=10240 --maxsize=20480
 #logvol swap --name=lv_swap --vgname=vg_mygroup --grow --size=1024 --maxsize=8192
-part / --fstype ext4 --size 1 --grow --asprimary 
-part swap --size 1024 
+#part / --fstype ext4 --size 1 --grow --asprimary 
+#part swap --size 1024 
 # part /boot --fstype ext4 --size 256 --asprimary 
 
 # By default the installer requires that repositories be authenticated
