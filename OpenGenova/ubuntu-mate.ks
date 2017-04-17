@@ -137,8 +137,12 @@ apt-get update
 apt-get install arc-theme
 
 wget -O Ultra-Flat-Orange.deb https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/ultra-flat-icons-orange_1.3.2~trusty~Noobslab.com_all.deb
-dpkg -i Ultra-Flat-Orange.deb;
+gdebi -n -q Ultra-Flat-Orange.deb
 rm -f Ultra-Flat-Orange.deb
+
+wget -O mintmenu_5.5.2-0~eugenesan~trusty1_all.deb http://ppa.launchpad.net/eugenesan/ppa/ubuntu/pool/main/m/mintmenu/mintmenu_5.5.2-0~eugenesan~trusty1_all.deb 
+gdebi -n -q mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
+rm -f mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 
 cd -
 
@@ -146,134 +150,141 @@ mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
 wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/ubuntu-mate.png
 
+#Let's apply our alredy set changes
+wget -O user https://github.com/belinux-it/L4A/blob/master/OpenGenova/theme/user?raw=true
+mkdir -p /home/opengenova/.config/dconf
+cp user /home/opengenova/.config/dconf
+chown -R 1000:1000 /home/opengenova/.config
+
+
 # customize MATE theme layout
-mkdir -p /etc/dconf/db/mate.d/lock/
-mkdir -p /etc/dconf/profile/
+#mkdir -p /etc/dconf/db/mate.d/lock/
+#mkdir -p /etc/dconf/profile/
 
-echo "user-db:user" > /etc/dconf/profile/user
-echo "system-db:mate" >> /etc/dconf/profile/user
+#echo "user-db:user" > /etc/dconf/profile/user
+#echo "system-db:mate" >> /etc/dconf/profile/user
 
-cat <<EOF > /etc/dconf/db/mate.d/10-keyboard
-[org/mate/desktop/peripherals/keyboard/kbd]
-layouts=['it','us','fr','de']
+#cat <<EOF > /etc/dconf/db/mate.d/10-keyboard
+#[org/mate/desktop/peripherals/keyboard/kbd]
+#layouts=['it','us','fr','de']
 
-[org/mate/desktop/peripherals/keyboard/general]
-group-per-window=false
+#[org/mate/desktop/peripherals/keyboard/general]
+#group-per-window=false
 
-[org/mate/marco/global-keybindings]
-run-command-terminal='<Primary><Alt>t'
+#[org/mate/marco/global-keybindings]
+#run-command-terminal='<Primary><Alt>t'
 
-[org/mate/terminal/global]
-use-menu-accelerators=false
-use-mnemonics=false
-EOF
+#[org/mate/terminal/global]
+#use-menu-accelerators=false
+#use-mnemonics=false
+#EOF
 
-cat <<EOF > /etc/dconf/db/mate.d/10-touchpad
-[org/mate/desktop/peripherals/touchpad]
-tap-to-click=false
-horiz-scroll-enabled=true
-touchpad-enabled=true
-scroll-method=2
-EOF
+#cat <<EOF > /etc/dconf/db/mate.d/10-touchpad
+#[org/mate/desktop/peripherals/touchpad]
+#tap-to-click=false
+#horiz-scroll-enabled=true
+#touchpad-enabled=true
+#scroll-method=2
+#EOF
 
-cat <<EOF > /etc/dconf/db/mate.d/15-theme
-[org/mate/desktop/background]
-picture-filename='/usr/share/OpenGenova/theme/ubuntu-mate.png'
+#cat <<EOF > /etc/dconf/db/mate.d/15-theme
+#[org/mate/desktop/background]
+#picture-filename='/usr/share/OpenGenova/theme/ubuntu-mate.png'
 
-[org/mate/pluma]
-auto-indent=true
-insert-spaces=true
-color-scheme='Arc'
+#[org/mate/pluma]
+#auto-indent=true
+#insert-spaces=true
+#color-scheme='Arc'
 
-[org/mate/caja/desktop]
-computer-icon-visible=true
-trash-icon-visible=true
+#[org/mate/caja/desktop]
+#computer-icon-visible=true
+#trash-icon-visible=true
 
-[org/mate/marco/general]
-num-workspaces=1
+#[org/mate/marco/general]
+#num-workspaces=1
 
-[org/mate/caja/preferences]
-show-image-thumbnails='always'
+#[org/mate/caja/preferences]
+#show-image-thumbnails='always'
 
-[org/mate/desktop/font-rendering]
-hinting='slight'
+#[org/mate/desktop/font-rendering]
+#hinting='slight'
 
-[org/mate/desktop/media-handling]
-automount-open=false
+#[org/mate/desktop/media-handling]
+#automount-open=false
 
-[org/mate/screensaver]
-lock-enabled=false
-mode='blank-only'
-themes='[]'
+#[org/mate/screensaver]
+#lock-enabled=false
+#mode='blank-only'
+#themes='[]'
 
-[org/mate/desktop/interface]
-gtk-theme='Arc'
-icon-theme='Ultra-Flat-Orange'
+#[org/mate/desktop/interface]
+#gtk-theme='Arc'
+#icon-theme='Ultra-Flat-Orange'
 
-[org/mate/marco/general]
-num-workspaces=1
-theme='Arc'
-compositing-manager=false
+#[org/mate/marco/general]
+#num-workspaces=1
+#theme='Arc'
+#compositing-manager=false
 
-[org/mate/panel/general]
-locked-down=true
+#[org/mate/panel/general]
+#locked-down=true
 
-[org/mate/power-manager]
-backlight-battery-reduce=false
-EOF
+#[org/mate/power-manager]
+#backlight-battery-reduce=false
+#EOF
 
-cat <<EOF > /etc/dconf/db/mate.d/20-panel
-[org/mate/panel/general]
-toplevel-id-list=['bottom']
-object-id-list=['main-menu', 'show-desktop', 'window-list', 'notification-area', 'indicators', 'clock-applet']
+#cat <<EOF > /etc/dconf/db/mate.d/20-panel
+#[org/mate/panel/general]
+#toplevel-id-list=['bottom']
+#object-id-list=['main-menu', 'show-desktop', 'window-list', 'notification-area', 'indicators', 'clock-applet']
+#
+#[org/mate/panel/toplevels/bottom]
+#orientation='bottom'
+#size=30
 
-[org/mate/panel/toplevels/bottom]
-orientation='bottom'
-size=30
-
-[org/mate/panel/objects/main-menu]
-object-type='menu'
-toplevel-id='bottom'
-
-[org/mate/panel/objects/show-desktop]
-object-type='applet'
-applet-iid='WnckletFactory::ShowDesktopApplet'
-toplevel-id='bottom'
-panel-right-stick=false
-position=1
-
-[org/mate/panel/objects/window-list]
-applet-iid='WnckletFactory::WindowListApplet'
-toplevel-id='bottom'
-position=2
-object-type='applet'
-panel-right-stick=false
-
-
-[org/mate/panel/objects/indicators]
-object-type='applet'
-applet-iid='IndicatorAppletCompleteFactory::IndicatorAppletComplete'
-toplevel-id='bottom'
-panel-right-stick=true
-position=1
-
-[org/mate/panel/objects/notification-area]
-object-type='applet'
-applet-iid='NotificationAreaAppletFactory::NotificationArea'
-toplevel-id='bottom'
-panel-right-stick=true
-position=2
-
-[org/mate/panel/objects/clock-applet]
-object-type='applet'
-applet-iid='ClockAppletFactory::ClockApplet'
-toplevel-id='bottom'
-panel-right-stick=true
-position=0
-
-[org/mate/panel/objects/clock-applet/prefs]
-show-date=false
-EOF
+#[org/mate/panel/objects/main-menu]
+#object-type='menu'
+#toplevel-id='bottom'
+#
+#[org/mate/panel/objects/show-desktop]
+#object-type='applet'
+#applet-iid='WnckletFactory::ShowDesktopApplet'
+#toplevel-id='bottom'
+#panel-right-stick=false
+#position=1
+#
+#[org/mate/panel/objects/window-list]
+#applet-iid='WnckletFactory::WindowListApplet'
+#toplevel-id='bottom'
+#position=2
+#object-type='applet'
+#panel-right-stick=false
+#
+#
+#[org/mate/panel/objects/indicators]
+#object-type='applet'
+#applet-iid='IndicatorAppletCompleteFactory::IndicatorAppletComplete'
+#toplevel-id='bottom'
+#panel-right-stick=true
+#position=1
+#
+#[org/mate/panel/objects/notification-area]
+#object-type='applet'
+#applet-iid='NotificationAreaAppletFactory::NotificationArea'
+#toplevel-id='bottom'
+#panel-right-stick=true
+#position=2
+#
+#[org/mate/panel/objects/clock-applet]
+#object-type='applet'
+#applet-iid='ClockAppletFactory::ClockApplet'
+#toplevel-id='bottom'
+#panel-right-stick=true
+#position=0
+#
+#[org/mate/panel/objects/clock-applet/prefs]
+#show-date=false
+#EOF
 
 # let's rebuild the database in /etc/dconf/db/mate:
-dconf update
+#dconf update
