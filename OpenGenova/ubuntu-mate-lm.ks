@@ -4,8 +4,8 @@
 
 # fix local mirror hostname and directory
 preseed mirror/country string manual
-preseed mirror/http/hostname string 192.168.56.101
-preseed mirror/http/directory string /mirrors/ubuntu/mirror/it.archive.ubuntu.com/ubuntu/
+preseed mirror/http/hostname string 192.168.1.10
+preseed mirror/http/directory string /ubuntu/
 preseed mirror/http/proxy string
 preseed mirror/codename string xenial
 preseed mirror/suite string xenial
@@ -136,23 +136,33 @@ libreoffice-style-breeze
 
 %post
 
-## cd /tmp
-## echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list
-## wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
-## apt-key add - < Release.key
-## rm -f Release.key
-## apt-get update
-## apt-get install arc-theme
-## 
-## wget -O Ultra-Flat-Orange.deb https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/ultra-flat-icons-orange_1.3.2~trusty~Noobslab.com_all.deb
-## dpkg -i Ultra-Flat-Orange.deb;
-## rm -f Ultra-Flat-Orange.deb
-## 
-## cd -
+MIRROR_HOST="192.168.1.10"
+# we install from a local mirror what we need as in network installation
+# from http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/
+cd /tmp
+wget http://${MIRROR_HOST}/RigeneraDigitale/install/themes/arc-theme_1488477732.766ae1a-0_all.deb
+gdebi -n -q arc-theme_1488477732.766ae1a-0_all.deb
+rm -f arc-theme_1488477732.766ae1a-0_all.deb
+
+#from https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/
+wget -O Ultra-Flat-Orange.deb http://${MIRROR_HOST}/RigeneraDigitale/install/themes/ultra-flat-icons-orange_1.3.2~trusty~Noobslab.com_all.deb
+gdebi -n -q Ultra-Flat-Orange.deb
+rm -f Ultra-Flat-Orange.deb
+
+# from http://ppa.launchpad.net/eugenesan/ppa/ubuntu/pool/main/m/mintmenu/
+wget -O mintmenu_5.5.2-0~eugenesan~trusty1_all.deb http://${MIRROR_HOST}/RigeneraDigitale/install/themes/mintmenu_5.5.2-0~eugenesan~trusty1_all.deb 
+gdebi -n -q mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
+rm -f mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
-wget -q http://192.168.56.101/mirrors/L4A/OpenGenova/theme/ubuntu-mate.png
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/ubuntu-mate.png
+cd -
+
+mkdir -p /home/opengenova/.config/dconf
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/user  
+mv user /home/opengenova/.config/dconf
+chown -R 1000:1000 /home/opengenova/.config
 
 # customize MATE theme layout
 ## mkdir -p /etc/dconf/db/mate.d/lock/

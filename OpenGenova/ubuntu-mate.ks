@@ -81,7 +81,7 @@ preseed partman/confirm_nooverwrite boolean true
 # By default the installer requires that repositories be authenticated
 # using a known gpg key. This setting can be used to disable that
 # authentication. Warning: Insecure, not recommended.
-#d-i debian-installer/allow_unauthenticated boolean true
+#preseed debian-installer/allow_unauthenticated boolean true
 
 
 #Setup NTP
