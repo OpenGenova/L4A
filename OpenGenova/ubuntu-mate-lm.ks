@@ -154,11 +154,13 @@ wget -O mintmenu_5.5.2-0~eugenesan~trusty1_all.deb http://${MIRROR_HOST}/Rigener
 gdebi -n -q mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 rm -f mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 
+#from https://github.com/belinux-it/L4A/tree/master/OpenGenova/theme
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
 wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/ubuntu-mate.png
 cd -
 
+#from https://github.com/belinux-it/L4A/tree/master/OpenGenova/theme
 mkdir -p /home/opengenova/.config/dconf
 wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/user  
 mv user /home/opengenova/.config/dconf
