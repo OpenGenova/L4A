@@ -46,7 +46,6 @@ install
 #Installation media
 cdrom
 
-
 #System bootloader configuration
 bootloader --location=mbr
 
