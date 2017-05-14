@@ -137,8 +137,7 @@ libreoffice-style-breeze
 
 %post
 
-#MIRROR_HOST="192.168.1.10"
-MIRROR_HOST="192.168.96.12"
+MIRROR_HOST="192.168.1.10"
 # we install from a local mirror what we need as in network installation
 # from http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/
 cd /tmp
