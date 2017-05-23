@@ -100,7 +100,7 @@ preseed clock-setup/ntp-server string pool.ntp.org
 auth --useshadow --enablemd5
 
 #Network information
-network --bootproto=dhcp --device=eth0
+network --bootproto=dhcp
 
 # If you want to force a hostname, regardless of what either the DHCP
 # server returns or what the reverse DNS entry for the IP is, uncomment
@@ -108,7 +108,7 @@ network --bootproto=dhcp --device=eth0
 preseed netcfg/hostname string opengenova
 
 #Firewall configuration
-firewall --disabled --trust=eth0 --ssh
+firewall --disabled --ssh
 
 # Policy for applying updates. May be "none" (no automatic updates),
 # "unattended-upgrades" (install security updates automatically), or
