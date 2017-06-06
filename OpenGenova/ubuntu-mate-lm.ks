@@ -133,6 +133,10 @@ ubuntu-mate-desktop
 #ubuntu-edu-tertiary
 
 libreoffice-style-breeze
+ubuntu-software
+gimp
+chromium-browser
+inkscape
 
 %post
 
