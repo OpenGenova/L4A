@@ -125,6 +125,12 @@ ubuntu-mate-desktop
 #ubuntu-edu-tertiary
 
 libreoffice-style-breeze
+ubuntu-software
+gimp
+chromium-browser
+inkscape
+
+
 
 %post
 
@@ -156,6 +162,10 @@ mkdir -p /home/opengenova/.config/dconf
 cp user /home/opengenova/.config/dconf
 chown -R 1000:1000 /home/opengenova/.config
 
+# Telegram install
+add-apt-repository ppa:atareao/telegram
+apt-get update
+apt-get install telegram
 
 # customize MATE theme layout
 #mkdir -p /etc/dconf/db/mate.d/lock/
