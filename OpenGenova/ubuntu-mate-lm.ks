@@ -158,17 +158,31 @@ wget -O mintmenu_5.5.2-0~eugenesan~trusty1_all.deb http://${MIRROR_HOST}/Rigener
 gdebi -n -q mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 rm -f mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 
+# from ppa:atareao/telegram
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/other/telegram_1.1.0-0ubuntu0_i386.deb
+gdebi -n -q telegram_1.1.0-0ubuntu0_i386.deb
+rm -f telegram_1.1.0-0ubuntu0_i386.deb
+
+# from github ghetto skype
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/other/ghetto-skype_1.5.0_i386.deb
+gdebi -n -q ghetto-skype_1.5.0_i386.deb
+rm -f ghetto-skype_1.5.0_i386.deb
+
 #from https://github.com/belinux-it/L4A/tree/master/OpenGenova/theme
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
 wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/ubuntu-mate.png
-cd -
 
 #from https://github.com/belinux-it/L4A/tree/master/OpenGenova/theme
 mkdir -p /home/opengenova/.config/dconf
 wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/user  
-mv user /home/opengenova/.config/dconf
+cp user /home/opengenova/.config/dconf
 chown -R 1000:1000 /home/opengenova/.config
+cd -
+
+# restore original source list (Ubuntu 16.04)
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/sources.list
+mv sources.list /etc/apt
 
 # customize MATE theme layout
 ## mkdir -p /etc/dconf/db/mate.d/lock/

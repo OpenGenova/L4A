@@ -140,7 +140,8 @@ wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Rele
 apt-key add - < Release.key
 rm -f Release.key
 apt-get update
-apt-get install arc-theme
+# 07/06/2017 key expired adding --allow-unauthenticated
+apt-get install --allow-unauthenticated arc-theme
 
 wget -O Ultra-Flat-Orange.deb https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/ultra-flat-icons-orange_1.3.2~trusty~Noobslab.com_all.deb
 gdebi -n -q Ultra-Flat-Orange.deb
