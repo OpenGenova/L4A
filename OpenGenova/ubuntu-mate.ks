@@ -164,7 +164,7 @@ cp user /home/opengenova/.config/dconf
 chown -R 1000:1000 /home/opengenova/.config
 
 # Telegram install
-add-apt-repository ppa:atareao/telegram -y
+LC_ALL=C.UTF-8 add-apt-repository ppa:atareao/telegram -y
 apt-get update
 apt-get install telegram
 
