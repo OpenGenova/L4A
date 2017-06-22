@@ -151,6 +151,10 @@ wget -O mintmenu_5.5.2-0~eugenesan~trusty1_all.deb http://ppa.launchpad.net/euge
 gdebi -n -q mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 rm -f mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 
+wget https://github.com/stanfieldr/ghetto-skype/releases/download/v1.5.0/ghetto-skype_1.5.0_i386.deb
+gdebi -n -q ghetto-skype_1.5.0_i386.deb
+rm -f ghetto-skype_1.5.0_i386.deb
+
 cd -
 
 mkdir -p /usr/share/OpenGenova/theme
