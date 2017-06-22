@@ -4,7 +4,7 @@ python-yaml
 python-notify
 pyhton-feedparser
 
-via package manager or pip
+via package manager or pip (python-pip)
 
 *Configuration file*
 add feeds into
