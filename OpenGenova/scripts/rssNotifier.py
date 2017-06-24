@@ -54,7 +54,7 @@ class Config() :
 notify a messag to the notify daemon
 '''
 def sendmessage(title, message):
-    pynotify.init("Test")
+    pynotify.init("markup")
     notice = pynotify.Notification(title, message)
     notice.show()
     return
@@ -82,16 +82,16 @@ if __name__ == "__main__":
                         title = rss.channel.title
                         # Let's take the last news only
                         entry = rss.entries[0]
-                        message = '<b>%s</b><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                        sendmessage(title, message)
-                        #if not last_modified :
-                            #entry = rss.entries[0]
-                            #message = '<b>%s</b><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                            #sendmessage(title, message)
-                        #else:
-                            #for entry in rss.entries :
-                                #message = '<n>%s</n><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                                #sendmessage(title, message)
+                        #message = '<b>%s</b><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
+                        #sendmessage(title, message)
+                        if not last_modified :
+                            entry = rss.entries[0]
+                            message = '<b>%s</b>%s<a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
+                            sendmessage(title, message)
+                        else:
+                            for entry in rss.entries :
+                                message = '<n>%s</n>%s<a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
+                                sendmessage(title, message)
                         ch["last_update"] = rss.modified
 
                 print (ch)
