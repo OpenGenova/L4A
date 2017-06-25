@@ -7,6 +7,7 @@ License: GPLv3
 Author:  Angelo Naselli <anaselli@linux.it>
 '''
 
+import sched, threading, time
 import feedparser
 import pynotify
 
@@ -49,53 +50,89 @@ class Config() :
         with open(self._pathName, 'w') as outfile:
             yaml.dump(self.content, outfile, default_flow_style=False)
 
+class Notifier:
 
-'''
-notify a messag to the notify daemon
-'''
-def sendmessage(title, message):
-    pynotify.init("markup")
-    notice = pynotify.Notification(title, message)
-    notice.show()
-    return
+    def __init__(self):
+        self.__running     = True
+        #default 60 minutes
+        self.__updateInterval = 60
+
+    def run(self):
+        self.__loop()
+
+    def __loop(self):
+        event = None
+        while self.__running == True:
+            self.__checkAndNotify()
+            time.sleep(self.__updateInterval*60)
+
+    def __checkAndNotify(self):
+        config = Config()
+        if config.load() :
+            print ("ok - %s"%(time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime())))
+            if "settings" in config.content.keys():
+                if "update_interval" in config.content['settings'] :
+                    self.__updateInterval = config.content['settings']['update_interval']
+                    print("read update interval %d"%(self.__updateInterval)) 
+            pynotify.init("markup")
+            if "channels" in config.content.keys():
+                for ch in config.content["channels"] :
+                    rss = None
+                    last_modified = None
+                    if "url" in ch.keys() and "enabled" in ch.keys():
+                        if ch["enabled"]:
+                            if "last_update" in ch.keys() :
+                                last_modified = ch["last_update"]
+                                rss = feedparser.parse(ch["url"], modified=last_modified)
+                            else:
+                                rss = feedparser.parse(ch["url"])
+                            time.sleep(1)
+                    if rss:
+                        if rss.status == 304:
+                            print("no changes")
+                        else:
+                            if 'title' in rss.channel.keys() :
+                                title    = rss.channel.title
+                            else:
+                                print("No channel title found - broken read??? - skipping channel")
+                                continue
+                            subtitle = rss.channel.subtitle if "subtitle" in rss.channel.keys() else ""
+                            # Let's take the last news only
+                            entry = rss.entries[0]
+
+                            if entry :
+                                if not last_modified :
+                                    entry      = rss.entries[0]
+                                    etitle     = entry.title if "title" in entry.keys() else ""
+                                    epublished = entry.published if "published" in entry.keys() else ""
+                                    elink      = entry.link if "link" in entry.keys() else "https://xliguria.it/"
+                                    message = '''%s
+
+%s
+
+<b>%s</b>
+
+<a href="%s">Leggi</a>'''%(subtitle, epublished, etitle, elink)
+                                    self.sendmessage(title, message)
+                            if "updated" in rss.channel.keys() :
+                                ch["last_update"] =  rss.channel.updated 
+
+                    print (ch)
+            config.write()
+        else :
+            print ("Config file problem, doing nothing")
+
+    def sendmessage(self, title, message):
+        '''
+        notify a messag to the notify daemon
+        '''
+
+        notice = pynotify.Notification(title, message)
+        notice.set_timeout(pynotify.EXPIRES_NEVER)
+        notice.show()
+        return
 
 if __name__ == "__main__":
-
-    config = Config()
-    if config.load() :
-        print ("ok")
-        if "channels" in config.content.keys():
-            for ch in config.content["channels"] :
-                rss = None
-                last_modified = None
-                if "url" in ch.keys() and "enabled" in ch.keys():
-                    if ch["enabled"]:
-                        if "last_update" in ch.keys() :
-                            last_modified = ch["last_update"]
-                            rss = feedparser.parse(ch["url"], modified=last_modified)
-                        else:
-                            rss = feedparser.parse(ch["url"])
-                if rss:
-                    if rss.status == 304:
-                        print("no changes")
-                    else:
-                        title = rss.channel.title
-                        # Let's take the last news only
-                        entry = rss.entries[0]
-                        #message = '<b>%s</b><br><%s><br><a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                        #sendmessage(title, message)
-                        if not last_modified :
-                            entry = rss.entries[0]
-                            message = '<b>%s</b>%s<a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                            sendmessage(title, message)
-                        else:
-                            for entry in rss.entries :
-                                message = '<n>%s</n>%s<a href="%s">Leggi</a>'%(entry.title, entry.published, entry.link)
-                                sendmessage(title, message)
-                        ch["last_update"] = rss.modified
-
-                print (ch)
-        config.write()
-    else :
-        print ("Config file problem, doing nothing")
+    n = Notifier()
+    n.run()
 

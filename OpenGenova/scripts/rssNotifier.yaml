@@ -32,3 +32,5 @@ channels:
 - enabled: true
   name: xweil
   url: http://xliguria.it/rubriche/xweil/feed/
+settings:
+  update_interval: 60
