@@ -7,7 +7,7 @@ License: GPLv3
 Author:  Angelo Naselli <anaselli@linux.it>
 '''
 
-import sched, threading, time
+import time
 import feedparser
 import pynotify
 
@@ -74,6 +74,8 @@ class Notifier:
                 if "update_interval" in config.content['settings'] :
                     self.__updateInterval = config.content['settings']['update_interval']
                     print("read update interval %d"%(self.__updateInterval)) 
+            else :
+                config.content['settings'] = {'update_interval' : 60}
             pynotify.init("markup")
             if "channels" in config.content.keys():
                 for ch in config.content["channels"] :
