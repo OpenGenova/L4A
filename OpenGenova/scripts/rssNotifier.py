@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# vim: set fileencoding=utf-8 :
+
 '''
 rssNotifier is a RSS notifier, it sends the news received if any to notify daemon
 
@@ -103,19 +105,18 @@ class Notifier:
                             entry = rss.entries[0]
 
                             if entry :
-                                if not last_modified :
-                                    entry      = rss.entries[0]
-                                    etitle     = entry.title if "title" in entry.keys() else ""
-                                    epublished = entry.published if "published" in entry.keys() else ""
-                                    elink      = entry.link if "link" in entry.keys() else "https://xliguria.it/"
-                                    message = '''%s
+                                entry      = rss.entries[0]
+                                etitle     = entry.title if "title" in entry.keys() else ""
+                                epublished = entry.published if "published" in entry.keys() else ""
+                                elink      = entry.link if "link" in entry.keys() else "https://xliguria.it/"
+                                message = '''%s
 
 %s
 
 <b>%s</b>
 
 <a href="%s">Leggi</a>'''%(subtitle, epublished, etitle, elink)
-                                    self.sendmessage(title, message)
+                                self.sendmessage(title, message)
                             if "updated" in rss.channel.keys() :
                                 ch["last_update"] =  rss.channel.updated 
 
