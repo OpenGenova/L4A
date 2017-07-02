@@ -130,7 +130,10 @@ gimp
 chromium-browser
 inkscape
 
-
+#rss notifier
+python-yaml
+python-notify
+python-pip
 
 %post
 
@@ -168,6 +171,7 @@ cp user /home/opengenova/.config/dconf
 chown -R 1000:1000 /home/opengenova/.config
 
 #Let's install rss notifier (xliguria) scripts
+pip install --disable-pip-version-check -q feedparser
 mkdir -p /usr/share/OpenGenova/scripts
 cd /usr/share/OpenGenova/scripts
 wget -O rssNotifier.py https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifier.py?raw=true
