@@ -14,6 +14,7 @@ channels:
 - enabled: true
   name: barsport
   url: http://xliguria.it/rubriche/barsport/feed/
+  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: true
   name: ladyp
   url: http://xliguria.it/rubriche/ladyp/feed/
@@ -22,3 +23,6 @@ channels:
   url: http://xliguria.it/rubriche/pausacafe/feed/ 
 
 Pay attention that the example into the repository does not contains the first dot "." into the name.
+
+To start it at desktop login, copy the file "xliguria.desktop" into ~/.config/autostart, "rssNotifier.py" into "/usr/share/OpenGenova/scripts" and you've done.
+

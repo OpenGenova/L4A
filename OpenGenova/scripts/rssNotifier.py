@@ -116,7 +116,8 @@ class Notifier:
 <b>%s</b>
 
 <a href="%s">Leggi</a>'''%(subtitle, epublished, etitle, elink)
-                                self.sendmessage(title, message)
+                                icon = ch["icon"] if "icon" in ch.keys() else None;
+                                self.sendmessage(title, message, icon)
                             if "updated" in rss.channel.keys() :
                                 ch["last_update"] =  rss.channel.updated 
 
@@ -125,12 +126,12 @@ class Notifier:
         else :
             print ("Config file problem, doing nothing")
 
-    def sendmessage(self, title, message):
+    def sendmessage(self, title, message, icon):
         '''
         notify a messag to the notify daemon
         '''
 
-        notice = pynotify.Notification(title, message)
+        notice = pynotify.Notification(title, message, icon) if icon is not None else pynotify.Notification(title, message)
         notice.set_timeout(pynotify.EXPIRES_NEVER)
         notice.show()
         return

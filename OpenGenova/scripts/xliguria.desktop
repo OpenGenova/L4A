@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=xLiguria
+GenericName=xliguria rss feed
+Comment=iget last news from xliguria
+Exec=/usr/share/OpenGenova/scripts/rssNotifier.py
+Terminal=false
+Type=Application
+Icon=dropbox
+Categories=Network;FileTransfer;
+StartupNotify=false
