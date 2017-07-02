@@ -167,6 +167,23 @@ mkdir -p /home/opengenova/.config/dconf
 cp user /home/opengenova/.config/dconf
 chown -R 1000:1000 /home/opengenova/.config
 
+#Let's install rss notifier (xliguria) scripts
+mkdir -p /usr/share/OpenGenova/scripts
+cd /usr/share/OpenGenova/scripts
+wget -O rssNotifier.py https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifier.py?raw=true
+chmod +x rssNotifier.py
+wget -O rssNotifyEnabler.py https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifyEnabler.py?raw=true
+chmod +x rssNotifyEnabler.py
+wget -O rssNotifier.yaml https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifier.yaml?raw=true
+cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
+chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
+wget -O xliguria.png https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/xliguria.png?raw=true
+wget -O xliguria.desktop https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/xliguria.desktop?raw=true
+mkdir -p /home/opengenova/.config/autostart
+cp xliguria.desktop /home/opengenova/.config/autostart
+chown -R 1000:1000 /home/opengenova/.config
+
+
 # Telegram install
 LC_ALL=C.UTF-8 add-apt-repository ppa:atareao/telegram -y
 apt-get update
