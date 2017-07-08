@@ -134,6 +134,8 @@ inkscape
 python-yaml
 python-notify
 python-pip
+#pyhton-feedparser fails here :(
+#pyhton-feedparser
 
 %post
 
@@ -160,17 +162,25 @@ rm -f ghetto-skype_1.5.0_i386.deb
 
 cd -
 
+# import png to be used in our home
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
-wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/ubuntu-mate.png
+wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/Applicazioni.png
+wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/desktop.png
+wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/login.png
+wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/user.png
+wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/lightdm-gtk-greeter.conf
+cp -f lightdm-gtk-greeter.conf /etc/lightdm
 
 #Let's apply our alredy set changes
-wget -O user https://github.com/belinux-it/L4A/blob/master/OpenGenova/theme/user?raw=true
-mkdir -p /home/opengenova/.config/dconf
-cp user /home/opengenova/.config/dconf
-chown -R 1000:1000 /home/opengenova/.config
+cd /usr/share/OpenGenova/
+wget -O opengenova-home.tar.bz2 https://github.com/belinux-it/L4A/blob/master/OpenGenova/opengenova-home.tar.bz2?raw=true
+cd /home
+rm -rf opengenova
+tar xjvf /usr/share/OpenGenova/opengenova-home.tar.bz2
 
 #Let's install rss notifier (xliguria) scripts
+# remove feedparser here if works in packages section
 pip install --disable-pip-version-check -q feedparser
 mkdir -p /usr/share/OpenGenova/scripts
 cd /usr/share/OpenGenova/scripts
