@@ -193,144 +193,21 @@ cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
 chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
 wget -O xliguria.png https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/xliguria.png?raw=true
 wget -O xliguria.desktop https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/xliguria.desktop?raw=true
+wget -O Configurazione_xLiguria.desktop https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/Configurazione_xLiguria.desktop?raw=true
+cp Configurazione_xLiguria.desktop /usr/share/applications
 mkdir -p /home/opengenova/.config/autostart
 cp xliguria.desktop /home/opengenova/.config/autostart
 chown -R 1000:1000 /home/opengenova/.config
 
+#let's change user skel
+mkdir -p /etc/skel/.config/dconf
+mkdir -p /etc/skel/.config/autostart
+cp /home/opengenova/.rssNotifier.yaml /etc/skel/
+cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf
+cp /home/opengenova/.config/autostart/xliguria.desktop /etc/skel/.config/autostart
 
 # Telegram install
 LC_ALL=C.UTF-8 add-apt-repository ppa:atareao/telegram -y
 apt-get update
 apt-get install telegram
 
-# customize MATE theme layout
-#mkdir -p /etc/dconf/db/mate.d/lock/
-#mkdir -p /etc/dconf/profile/
-
-#echo "user-db:user" > /etc/dconf/profile/user
-#echo "system-db:mate" >> /etc/dconf/profile/user
-
-#cat <<EOF > /etc/dconf/db/mate.d/10-keyboard
-#[org/mate/desktop/peripherals/keyboard/kbd]
-#layouts=['it','us','fr','de']
-
-#[org/mate/desktop/peripherals/keyboard/general]
-#group-per-window=false
-
-#[org/mate/marco/global-keybindings]
-#run-command-terminal='<Primary><Alt>t'
-
-#[org/mate/terminal/global]
-#use-menu-accelerators=false
-#use-mnemonics=false
-#EOF
-
-#cat <<EOF > /etc/dconf/db/mate.d/10-touchpad
-#[org/mate/desktop/peripherals/touchpad]
-#tap-to-click=false
-#horiz-scroll-enabled=true
-#touchpad-enabled=true
-#scroll-method=2
-#EOF
-
-#cat <<EOF > /etc/dconf/db/mate.d/15-theme
-#[org/mate/desktop/background]
-#picture-filename='/usr/share/OpenGenova/theme/ubuntu-mate.png'
-
-#[org/mate/pluma]
-#auto-indent=true
-#insert-spaces=true
-#color-scheme='Arc'
-
-#[org/mate/caja/desktop]
-#computer-icon-visible=true
-#trash-icon-visible=true
-
-#[org/mate/marco/general]
-#num-workspaces=1
-
-#[org/mate/caja/preferences]
-#show-image-thumbnails='always'
-
-#[org/mate/desktop/font-rendering]
-#hinting='slight'
-
-#[org/mate/desktop/media-handling]
-#automount-open=false
-
-#[org/mate/screensaver]
-#lock-enabled=false
-#mode='blank-only'
-#themes='[]'
-
-#[org/mate/desktop/interface]
-#gtk-theme='Arc'
-#icon-theme='Ultra-Flat-Orange'
-
-#[org/mate/marco/general]
-#num-workspaces=1
-#theme='Arc'
-#compositing-manager=false
-
-#[org/mate/panel/general]
-#locked-down=true
-
-#[org/mate/power-manager]
-#backlight-battery-reduce=false
-#EOF
-
-#cat <<EOF > /etc/dconf/db/mate.d/20-panel
-#[org/mate/panel/general]
-#toplevel-id-list=['bottom']
-#object-id-list=['main-menu', 'show-desktop', 'window-list', 'notification-area', 'indicators', 'clock-applet']
-#
-#[org/mate/panel/toplevels/bottom]
-#orientation='bottom'
-#size=30
-
-#[org/mate/panel/objects/main-menu]
-#object-type='menu'
-#toplevel-id='bottom'
-#
-#[org/mate/panel/objects/show-desktop]
-#object-type='applet'
-#applet-iid='WnckletFactory::ShowDesktopApplet'
-#toplevel-id='bottom'
-#panel-right-stick=false
-#position=1
-#
-#[org/mate/panel/objects/window-list]
-#applet-iid='WnckletFactory::WindowListApplet'
-#toplevel-id='bottom'
-#position=2
-#object-type='applet'
-#panel-right-stick=false
-#
-#
-#[org/mate/panel/objects/indicators]
-#object-type='applet'
-#applet-iid='IndicatorAppletCompleteFactory::IndicatorAppletComplete'
-#toplevel-id='bottom'
-#panel-right-stick=true
-#position=1
-#
-#[org/mate/panel/objects/notification-area]
-#object-type='applet'
-#applet-iid='NotificationAreaAppletFactory::NotificationArea'
-#toplevel-id='bottom'
-#panel-right-stick=true
-#position=2
-#
-#[org/mate/panel/objects/clock-applet]
-#object-type='applet'
-#applet-iid='ClockAppletFactory::ClockApplet'
-#toplevel-id='bottom'
-#panel-right-stick=true
-#position=0
-#
-#[org/mate/panel/objects/clock-applet/prefs]
-#show-date=false
-#EOF
-
-# let's rebuild the database in /etc/dconf/db/mate:
-#dconf update
