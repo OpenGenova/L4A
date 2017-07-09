@@ -170,6 +170,7 @@ wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme
 wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/login.png
 wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/user.png
 wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/lightdm-gtk-greeter.conf
+wget -O guest-user-skel https://github.com/belinux-it/L4A/blob/master/OpenGenova/theme/guest-user-skel?raw=true
 cp -f lightdm-gtk-greeter.conf /etc/lightdm
 
 #Let's apply our alredy set changes
@@ -198,6 +199,12 @@ cp Configurazione_xLiguria.desktop /usr/share/applications
 mkdir -p /home/opengenova/.config/autostart
 cp xliguria.desktop /home/opengenova/.config/autostart
 chown -R 1000:1000 /home/opengenova/.config
+
+# something in our menu is not available for guest user
+# let's add a new skel for guest based on the our one but with default menu
+cp -r /etc/skel /etc/guest-session
+mkdir -p /etc/guest-session/skel/.config/dconf
+cp -f /usr/share/OpenGenova/theme/guest-user-skel /etc/guest-session/skel/.config/dconf/user
 
 #let's change user skel
 mkdir -p /etc/skel/.config/dconf
