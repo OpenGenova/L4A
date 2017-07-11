@@ -1,46 +1,46 @@
 channels:
 - enabled: true
-  name: barsport
+  name: Bar Sport
   url: http://xliguria.it/rubriche/barsport/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: true
-  name: ladyp
+  name: LadyP
   url: http://xliguria.it/rubriche/ladyp/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: pausacafe
+  name: Pausa Cafe
   url: http://xliguria.it/rubriche/pausacafe/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: xlevante
+  name: XLevante
   url: http://xliguria.it/rubriche/xlevante/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: mortaioveleni
+  name: Mortaio Veleni
   url: http://xliguria.it/rubriche/mortaioveleni/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: extrasport
+  name: Extra Sport
   url: http://xliguria.it/rubriche/extrasport/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: extradoria
+  name: Extra Doria
   url: http://xliguria.it/rubriche/extradoria/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: extragenoa
+  name: Extra Genoa
   url: http://xliguria.it/rubriche/extragenoa/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: xlive
+  name: XLive
   url: http://xliguria.it/rubriche/xlive/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
-  name: ricetta
+  name: Ricetta
   url: http://xliguria.it/rubriche/ricetta/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: true
-  name: xweil
+  name: XWeil
   url: http://xliguria.it/rubriche/xweil/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 settings:
