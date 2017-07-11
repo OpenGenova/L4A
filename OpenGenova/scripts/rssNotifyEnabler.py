@@ -6,6 +6,7 @@ License: GPLv3
 
 Author:  Angelo Naselli <anaselli@linux.it>
 Author:  Luigi Sainini  <luigi.sainini@tiscali.it>
+
 '''
 '''
 
