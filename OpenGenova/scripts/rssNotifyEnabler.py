@@ -5,6 +5,8 @@ rssNotifyEnabler allow to enable rss feeds for rssNotifier
 License: GPLv3
 
 Author:  Angelo Naselli <anaselli@linux.it>
+Author:  Luigi Sainini  <luigi.sainini@tiscali.it>
+'''
 '''
 
 
@@ -60,7 +62,7 @@ class TableWindow(Gtk.Window):
       print ("ok")
       if "channels" in self.config.content.keys():
         Gtk.Window.__init__(self, title="Abilitazione notifiche")
-        self.set_border_width(10)
+        self.set_border_width(40)
 
         box_outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(box_outer)
