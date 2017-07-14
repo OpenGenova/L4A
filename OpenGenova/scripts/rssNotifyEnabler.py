@@ -13,7 +13,7 @@ Author:  Luigi Sainini  <luigi.sainini@tiscali.it>
 import sys
 import yaml
 
-from os.path import expanduser, join
+from os.path import expanduser, join, exists
 import os
 
 
@@ -63,6 +63,11 @@ class TableWindow(Gtk.Window):
       if "channels" in self.config.content.keys():
         Gtk.Window.__init__(self, title="Abilitazione notifiche")
         self.set_border_width(40)
+        #### TODO icon name must be the application one and we need to set one icon for channels or
+        #### channel group (read from configuration file)
+        icon_file = "/usr/share/OpenGenova/scripts/xliguria.png"
+        if os.path.exists(icon_file):
+            self.set_icon_from_file(icon_file)
 
         box_outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(box_outer)
