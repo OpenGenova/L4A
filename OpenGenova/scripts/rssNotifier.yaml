@@ -4,7 +4,7 @@ channels:
   url: http://xliguria.it/rubriche/barsport/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: true
-  name: LadyP
+  name: Lady P
   url: http://xliguria.it/rubriche/ladyp/feed/
   icon: "/usr/share/OpenGenova/scripts/xliguria.png"
 - enabled: false
