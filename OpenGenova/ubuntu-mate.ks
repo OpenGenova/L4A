@@ -185,6 +185,7 @@ tar xjvf /usr/share/OpenGenova/opengenova-home.tar.bz2
 pip install --disable-pip-version-check -q feedparser
 mkdir -p /usr/share/OpenGenova/scripts
 cd /usr/share/OpenGenova/scripts
+wget -O restore-opengenova-home.sh https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/restore-opengenova-home.sh?raw=true
 wget -O rssNotifier.py https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifier.py?raw=true
 chmod +x rssNotifier.py
 wget -O rssNotifyEnabler.py https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifyEnabler.py?raw=true
