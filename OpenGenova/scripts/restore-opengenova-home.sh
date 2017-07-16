@@ -1,3 +1,5 @@
+#!/bin/bash
+
 download()
 {
     #Let's apply our alredy set changes
