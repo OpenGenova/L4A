@@ -138,6 +138,13 @@ gimp
 chromium-browser
 inkscape
 
+#rss notifier
+python-yaml
+python-notify
+python-pip
+#pyhton-feedparser fails here :(
+#pyhton-feedparser
+
 %post
 
 MIRROR_HOST="192.168.1.10"
@@ -168,6 +175,12 @@ wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/other/ghetto-skype_1.5.0_
 gdebi -n -q ghetto-skype_1.5.0_i386.deb
 rm -f ghetto-skype_1.5.0_i386.deb
 
+#Let's install rss notifier (xliguria) scripts
+# remove feedparser here if works in packages section
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/other/python-feedparser_5.1.3-3build1_all.deb
+gdebi -n -q python-feedparser_5.1.3-3build1_all.deb
+rm -f python-feedparser_5.1.3-3build1_all.deb
+
 #from https://github.com/belinux-it/L4A/tree/master/OpenGenova/theme
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
@@ -186,9 +199,6 @@ cd /home
 rm -rf opengenova
 tar xjvf /usr/share/OpenGenova/opengenova-home.tar.bz2
 
-#Let's install rss notifier (xliguria) scripts
-# remove feedparser here if works in packages section
-pip install --disable-pip-version-check -q feedparser
 mkdir -p /usr/share/OpenGenova/scripts
 cd /usr/share/OpenGenova/scripts
 wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/restore-opengenova-home.sh
