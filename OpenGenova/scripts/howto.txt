@@ -60,8 +60,12 @@ added in .config/autostart a desktop file (see below)
 
 Pinguy builder 
 https://www.ostechnix.com/pinguy-builder-build-custom-ubuntu-os/
-sudo apt-get install gdebi
+# gdebi is already in - sudo apt-get install gdebi
+sudo apt update
 sudo gdebi pinguybuilder_4.3-6_all-beta.deb
+
+get the splash.png (the Rigenera Digitale mini one is ok) and set it,
+set also name of ISO and other useful information such as site URL.
 
 
 Pinguy builder - Auto Login Not Working
