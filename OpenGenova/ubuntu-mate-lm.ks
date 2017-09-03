@@ -171,147 +171,58 @@ rm -f ghetto-skype_1.5.0_i386.deb
 #from https://github.com/belinux-it/L4A/tree/master/OpenGenova/theme
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
-wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/ubuntu-mate.png
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/Applicazioni.png
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/desktop.png
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/login.png
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/user.png
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/lightdm-gtk-greeter.conf
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/guest-user-skel
+cp -f lightdm-gtk-greeter.conf /etc/lightdm
 
-#from https://github.com/belinux-it/L4A/tree/master/OpenGenova/theme
-mkdir -p /home/opengenova/.config/dconf
-wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/themes/user  
-cp user /home/opengenova/.config/dconf
+#Let's apply our alredy set changes
+cd /usr/share/OpenGenova/
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/opengenova-home.tar.bz2
+cd /home
+rm -rf opengenova
+tar xjvf /usr/share/OpenGenova/opengenova-home.tar.bz2
+
+#Let's install rss notifier (xliguria) scripts
+# remove feedparser here if works in packages section
+pip install --disable-pip-version-check -q feedparser
+mkdir -p /usr/share/OpenGenova/scripts
+cd /usr/share/OpenGenova/scripts
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/restore-opengenova-home.sh
+chmod +x restore-opengenova-home.sh
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/rssNotifier.py
+chmod +x rssNotifier.py
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/rssNotifyEnabler.py
+chmod +x rssNotifyEnabler.py
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/rssNotifier.yaml
+cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
+chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/xliguria.png
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/xliguria.desktop
+wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/scripts/Configurazione_xLiguria.desktop
+cp Configurazione_xLiguria.desktop /usr/share/applications
+mkdir -p /home/opengenova/.config/autostart
+cp xliguria.desktop /home/opengenova/.config/autostart
 chown -R 1000:1000 /home/opengenova/.config
+
+# something in our menu is not available for guest user
+# let's add a new skel for guest based on the our one but with default menu
+cp -r /etc/skel /etc/guest-session
+mkdir -p /etc/guest-session/skel/.config/dconf
+cp -f /usr/share/OpenGenova/theme/guest-user-skel /etc/guest-session/skel/.config/dconf/user
+
+#let's change user skel
+mkdir -p /etc/skel/.config/dconf
+mkdir -p /etc/skel/.config/autostart
+cp /home/opengenova/.rssNotifier.yaml /etc/skel/
+cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf
+cp /home/opengenova/.config/autostart/xliguria.desktop /etc/skel/.config/autostart
 cd -
 
 # restore original source list (Ubuntu 16.04)
 wget -q http://${MIRROR_HOST}/RigeneraDigitale/install/sources.list
 mv sources.list /etc/apt
 
-# customize MATE theme layout
-## mkdir -p /etc/dconf/db/mate.d/lock/
-## mkdir -p /etc/dconf/profile/
-## 
-## echo "user-db:user" > /etc/dconf/profile/user
-## echo "system-db:mate" >> /etc/dconf/profile/user
-## 
-## cat <<EOF > /etc/dconf/db/mate.d/10-keyboard
-## [org/mate/desktop/peripherals/keyboard/kbd]
-## layouts=['it','us','fr','de']
-## 
-## [org/mate/desktop/peripherals/keyboard/general]
-## group-per-window=false
-## 
-## [org/mate/marco/global-keybindings]
-## run-command-terminal='<Primary><Alt>t'
-## 
-## [org/mate/terminal/global]
-## use-menu-accelerators=false
-## use-mnemonics=false
-## EOF
-## 
-## cat <<EOF > /etc/dconf/db/mate.d/10-touchpad
-## [org/mate/desktop/peripherals/touchpad]
-## tap-to-click=false
-## horiz-scroll-enabled=true
-## touchpad-enabled=true
-## scroll-method=2
-## EOF
-## 
-## cat <<EOF > /etc/dconf/db/mate.d/15-theme
-## [org/mate/desktop/background]
-## picture-filename='/usr/share/OpenGenova/theme/ubuntu-mate.png'
-## 
-## [org/mate/pluma]
-## auto-indent=true
-## insert-spaces=true
-## color-scheme='Arc'
-## 
-## [org/mate/caja/desktop]
-## computer-icon-visible=true
-## trash-icon-visible=true
-## 
-## [org/mate/marco/general]
-## num-workspaces=1
-## 
-## [org/mate/caja/preferences]
-## show-image-thumbnails='always'
-## 
-## [org/mate/desktop/font-rendering]
-## hinting='slight'
-## 
-## [org/mate/desktop/media-handling]
-## automount-open=false
-## 
-## [org/mate/screensaver]
-## lock-enabled=false
-## mode='blank-only'
-## themes='[]'
-## 
-## [org/mate/desktop/interface]
-## gtk-theme='Arc'
-## icon-theme='Ultra-Flat-Orange'
-## 
-## [org/mate/marco/general]
-## num-workspaces=1
-## theme='Arc'
-## compositing-manager=false
-## 
-## [org/mate/panel/general]
-## locked-down=true
-## 
-## [org/mate/power-manager]
-## backlight-battery-reduce=false
-## EOF
-## 
-## cat <<EOF > /etc/dconf/db/mate.d/20-panel
-## [org/mate/panel/general]
-## toplevel-id-list=['bottom']
-## object-id-list=['main-menu', 'show-desktop', 'window-list', 'notification-area', 'indicators', 'clock-applet']
-## 
-## [org/mate/panel/toplevels/bottom]
-## orientation='bottom'
-## size=30
-## 
-## [org/mate/panel/objects/main-menu]
-## object-type='menu'
-## toplevel-id='bottom'
-## 
-## [org/mate/panel/objects/show-desktop]
-## object-type='applet'
-## applet-iid='WnckletFactory::ShowDesktopApplet'
-## toplevel-id='bottom'
-## panel-right-stick=false
-## position=1
-## 
-## [org/mate/panel/objects/window-list]
-## applet-iid='WnckletFactory::WindowListApplet'
-## toplevel-id='bottom'
-## position=2
-## object-type='applet'
-## panel-right-stick=false
-## 
-## 
-## [org/mate/panel/objects/indicators]
-## object-type='applet'
-## applet-iid='IndicatorAppletCompleteFactory::IndicatorAppletComplete'
-## toplevel-id='bottom'
-## panel-right-stick=true
-## position=1
-## 
-## [org/mate/panel/objects/notification-area]
-## object-type='applet'
-## applet-iid='NotificationAreaAppletFactory::NotificationArea'
-## toplevel-id='bottom'
-## panel-right-stick=true
-## position=2
-## 
-## [org/mate/panel/objects/clock-applet]
-## object-type='applet'
-## applet-iid='ClockAppletFactory::ClockApplet'
-## toplevel-id='bottom'
-## panel-right-stick=true
-## position=0
-## 
-## [org/mate/panel/objects/clock-applet/prefs]
-## show-date=false
-## EOF
-## 
-## # let's rebuild the database in /etc/dconf/db/mate:
-## dconf update

@@ -92,7 +92,7 @@ preseed clock-setup/ntp-server string pool.ntp.org
 auth --useshadow --enablemd5
 
 #Network information
-network --bootproto=dhcp 
+network --bootproto=dhcp
 
 # If you want to force a hostname, regardless of what either the DHCP
 # server returns or what the reverse DNS entry for the IP is, uncomment
