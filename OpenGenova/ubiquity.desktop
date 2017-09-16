@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install RELEASE
+Name[it]=Installa RELEASE
+Comment=Install this system permanently to your hard disk
+Comment[it]=Installa questo sistema in modo permanente sul disco rigido
+Keywords=ubiquity;
+Exec=gksudo ubiquity gtk_ui
+Icon=ubiquity
+Terminal=false
+Categories=GTK;System;Settings;
+NotShowIn=KDE;
+X-Ayatana-Appmenu-Show-Stubs=False

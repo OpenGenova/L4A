@@ -60,12 +60,29 @@ added in .config/autostart a desktop file (see below)
 
 Pinguy builder 
 https://www.ostechnix.com/pinguy-builder-build-custom-ubuntu-os/
-# gdebi is already in - sudo apt-get install gdebi
-sudo apt update
-sudo gdebi pinguybuilder_4.3-6_all-beta.deb
+gdebi should be already in, otherwise just "sudo apt-get install gdebi"
+Then update repo info with 
+  sudo apt update
+and finally install pinguybuilder with 
+  sudo gdebi pinguybuilder_4.3-6_all-beta.deb
 
-get the splash.png (the Rigenera Digitale mini one is ok) and set it,
-set also name of ISO and other useful information such as site URL.
+Set "Actions"
+get the splash.png (the Rigenera Digitale mini one is ok 
+https://github.com/belinux-it/L4A/blob/master/OpenGenova/ISO/splash.png) and set it
+as "Boot menu picture for the live cd (640x480 PNG)", and do that for
+"Boot menu picture for the installed system" too. 
+Select opengenova as "User, whose current settings will be used
+
+Set "Settings"
+Username left as custom, we don't need it as backup
+CD Label: "Rigenera Digitale"
+Filename: "RigeneraDigitale-$1.iso" ($1 is backup or dist action)
+Files to exclude: /windows /dos (left as it was)
+URL for USB Creator: "http://rigenera.opengenova.org"
+
+TODO theme https://ubuntuforums.org/showthread.php?t=2340103
+and https://wiki.ubuntu.com/Plymouth (but in /usr/share/plymouth)
+run Backup
 
 
 Pinguy builder - Auto Login Not Working
