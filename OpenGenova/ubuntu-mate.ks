@@ -141,13 +141,18 @@ python-pip
 %post
 
 cd /tmp
-echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list
-wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
-apt-key add - < Release.key
-rm -f Release.key
-apt-get update
-# 07/06/2017 key expired adding --allow-unauthenticated
-apt-get install --allow-unauthenticated arc-theme
+# 14/10/2017 repository fails
+#echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list
+#wget http://download.opensuse.org/repositories/home:Horst3180/xUbuntu_16.04/Release.key
+#apt-key add - < Release.key
+#rm -f Release.key
+#apt-get update
+## 07/06/2017 key expired adding --allow-unauthenticated
+#apt-get install --allow-unauthenticated arc-theme
+# 14/10/2017 installing manually from its url
+wget -O arc-theme-all.deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/all/arc-theme_1488477732.766ae1a-0_all.deb
+gdebi -n -q arc-theme-all.deb
+rm -f arc-theme-all.deb
 
 wget -O Ultra-Flat-Orange.deb https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/ultra-flat-icons-orange_1.3.2~trusty~Noobslab.com_all.deb
 gdebi -n -q Ultra-Flat-Orange.deb
