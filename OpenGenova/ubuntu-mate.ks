@@ -125,7 +125,8 @@ ubuntu-mate-desktop
 #ubuntu-edu-tertiary
 
 libreoffice-style-breeze
-ubuntu-software
+#ubuntu-software
+software-center
 gimp
 chromium-browser
 inkscape
