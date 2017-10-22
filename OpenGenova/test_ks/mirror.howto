@@ -20,3 +20,11 @@ host mirror IP (for instance 192.168.1.1)
 path:
 /mirrors/ubuntu/mirror/it.archive.ubuntu.com/ubuntu/
 first "/" is important
+
+if ks has the following line:
+preseed mirror/http/directory string /ubuntu/
+that means that we need a link to ubuntu as below:
+cd /var/www/html
+ln -s mirrors/ubuntu/mirror/it.archive.ubuntu.com/ubuntu ubuntu
+
+
