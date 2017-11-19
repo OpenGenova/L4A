@@ -171,17 +171,17 @@ cd -
 # import png to be used in our home
 mkdir -p /usr/share/OpenGenova/theme
 cd /usr/share/OpenGenova/theme
-wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/Applicazioni.png
-wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/desktop.png
-wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/login.png
-wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/user.png
-wget -q https://raw.githubusercontent.com/belinux-it/L4A/master/OpenGenova/theme/lightdm-gtk-greeter.conf
-wget -O guest-user-skel https://github.com/belinux-it/L4A/blob/master/OpenGenova/theme/guest-user-skel?raw=true
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/Applicazioni.png
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/desktop.png
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/login.png
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/user.png
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/lightdm-gtk-greeter.conf
+wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/theme/guest-user-skel?raw=true
 cp -f lightdm-gtk-greeter.conf /etc/lightdm
 
 #Let's apply our alredy set changes
 cd /usr/share/OpenGenova/
-wget -O opengenova-home.tar.bz2 https://github.com/belinux-it/L4A/blob/master/OpenGenova/opengenova-home.tar.bz2?raw=true
+wget -O opengenova-home.tar.bz2 https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/opengenova-home.tar.bz2?raw=true
 cd /home
 rm -rf opengenova
 tar xjvf /usr/share/OpenGenova/opengenova-home.tar.bz2
@@ -191,18 +191,18 @@ tar xjvf /usr/share/OpenGenova/opengenova-home.tar.bz2
 pip install --disable-pip-version-check -q feedparser
 mkdir -p /usr/share/OpenGenova/scripts
 cd /usr/share/OpenGenova/scripts
-wget -O restore-opengenova-home.sh https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/restore-opengenova-home.sh?raw=true
+wget -O restore-opengenova-home.sh https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/restore-opengenova-home.sh?raw=true
 chmod +x restore-opengenova-home.sh
-wget -O rssNotifier.py https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifier.py?raw=true
+wget -O rssNotifier.py https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/rssNotifier.py?raw=true
 chmod +x rssNotifier.py
-wget -O rssNotifyEnabler.py https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifyEnabler.py?raw=true
+wget -O rssNotifyEnabler.py https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/rssNotifyEnabler.py?raw=true
 chmod +x rssNotifyEnabler.py
-wget -O rssNotifier.yaml https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/rssNotifier.yaml?raw=true
+wget -O rssNotifier.yaml https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/rssNotifier.yaml?raw=true
 cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
 chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
-wget -O xliguria.png https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/xliguria.png?raw=true
-wget -O xliguria.desktop https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/xliguria.desktop?raw=true
-wget -O Configurazione_xLiguria.desktop https://github.com/belinux-it/L4A/blob/master/OpenGenova/scripts/Configurazione_xLiguria.desktop?raw=true
+wget -O xliguria.png https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.png?raw=true
+wget -O xliguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.desktop?raw=true
+wget -O Configurazione_xLiguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/Configurazione_xLiguria.desktop?raw=true
 cp Configurazione_xLiguria.desktop /usr/share/applications
 mkdir -p /home/opengenova/.config/autostart
 cp xliguria.desktop /home/opengenova/.config/autostart
