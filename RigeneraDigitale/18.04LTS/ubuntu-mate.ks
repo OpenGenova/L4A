@@ -143,6 +143,9 @@ python-pip
 #pyhton-feedparser fails here :(
 #pyhton-feedparser
 
+# NOTE ghetto skype 1.6.0 needs libgif7
+libgif7
+
 %post
 
 apt-get update
@@ -179,9 +182,9 @@ if [ $(uname --machine) = "x86_64" ]; then
   gdebi -n -q skypeforlinux-64.deb 2>> /var/log/OpenGenova/apt.log
   rm -f skypeforlinux-64.deb
 else
-  wget https://github.com/stanfieldr/ghetto-skype/releases/download/v1.5.0/ghetto-skype_1.5.0_i386.deb
-  gdebi -n -q ghetto-skype_1.5.0_i386.deb
-  rm -f ghetto-skype_1.5.0_i386.deb
+  wget https://github.com/stanfieldr/ghetto-skype/releases/download/v1.6.0/ghetto-skype_1.6.0_i386.deb
+  gdebi -n -q ghetto-skype_1.6.0_i386.deb 2>> /var/log/OpenGenova/apt.log
+  rm -f ghetto-skype_1.6.0_i386.deb
 fi
 
 cd -
