@@ -114,6 +114,8 @@ preseed pkgsel/update-policy select unattended-upgrades
 %packages
 ubuntu-mate-core
 ubuntu-mate-desktop
+#missing in ubuntu 18.04
+lightdm-gtk-greeter
 
 # pre school edu
 #ubuntu-edu-preschool
@@ -127,6 +129,7 @@ ubuntu-mate-desktop
 libreoffice-style-breeze
 #ubuntu-software
 gnome-software
+snapd
 snap
 
 gimp
@@ -141,6 +144,9 @@ python-pip
 #pyhton-feedparser
 
 %post
+
+apt-get update
+mkdir -p /var/log/OpenGenova
 
 cd /tmp
 # 14/10/2017 repository fails
@@ -167,8 +173,11 @@ cd /tmp
 # gdebi -n -q mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 # rm -f mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 
+
 if [ $(uname --machine) = "x86_64" ]; then
-  snap install skype --classic
+  wget https://repo.skype.com/latest/skypeforlinux-64.deb
+  gdebi -n -q skypeforlinux-64.deb
+  rm -f skypeforlinux-64.deb 2>> /var/log/OpenGenova/apt.log
 else
   wget https://github.com/stanfieldr/ghetto-skype/releases/download/v1.5.0/ghetto-skype_1.5.0_i386.deb
   gdebi -n -q ghetto-skype_1.5.0_i386.deb
@@ -186,7 +195,7 @@ wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/user.png
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/lightdm-gtk-greeter.conf
 wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/theme/guest-user-skel?raw=true
-# TODO cp -f lightdm-gtk-greeter.conf /etc/lightdm
+cp -f lightdm-gtk-greeter.conf /etc/lightdm
 
 #Let's apply our alredy set changes
 ### TODO 18.04 home based on arch
@@ -198,7 +207,8 @@ wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDi
 
 #Let's install rss notifier (xliguria) scripts
 # remove feedparser here if works in packages section
-pip install --disable-pip-version-check -q feedparser
+#pip install --disable-pip-version-check -q feedparser
+apt-get install -y python-feedparser 2>> /var/log/OpenGenova/apt.log
 ### TODO fix icon and rssNotifier.yaml with new feeds
 mkdir -p /usr/share/OpenGenova/scripts
 cd /usr/share/OpenGenova/scripts
@@ -209,31 +219,33 @@ chmod +x rssNotifier.py
 wget -O rssNotifyEnabler.py https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/rssNotifyEnabler.py?raw=true
 chmod +x rssNotifyEnabler.py
 wget -O rssNotifier.yaml https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/rssNotifier.yaml?raw=true
-cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
-chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
+# NOTE home does not exist yet
+# TODO (remove?) cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
+# TODO chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
 wget -O xliguria.png https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.png?raw=true
 wget -O xliguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.desktop?raw=true
 wget -O Configurazione_xLiguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/Configurazione_xLiguria.desktop?raw=true
 cp Configurazione_xLiguria.desktop /usr/share/applications
-mkdir -p /home/opengenova/.config/autostart
-cp xliguria.desktop /home/opengenova/.config/autostart
-chown -R 1000:1000 /home/opengenova/.config
+# TODO mkdir -p /home/opengenova/.config/autostart
+# TODO cp xliguria.desktop /home/opengenova/.config/autostart
+# TODO chown -R 1000:1000 /home/opengenova/.config
+
+#let's change user skel
+pwd >> /var/log/OpenGenova/scripts.log
+mkdir -p /etc/skel/.config/dconf 2>> /var/log/OpenGenova/scripts.log
+mkdir -p /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
+cp rssNotifier.yaml /etc/skel/.rssNotifier.yaml 2>> /var/log/OpenGenova/scripts.log
+# TODO user settings cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf
+cp xliguria.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
 
 # something in our menu is not available for guest user
 # let's add a new skel for guest based on the our one but with default menu
-cp -r /etc/skel /etc/guest-session
-mkdir -p /etc/guest-session/skel/.config/dconf
-cp -f /usr/share/OpenGenova/theme/guest-user-skel /etc/guest-session/skel/.config/dconf/user
-
-#let's change user skel
-mkdir -p /etc/skel/.config/dconf
-mkdir -p /etc/skel/.config/autostart
-cp /home/opengenova/.rssNotifier.yaml /etc/skel/
-cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf
-cp /home/opengenova/.config/autostart/xliguria.desktop /etc/skel/.config/autostart
+cp -r /etc/skel /etc/guest-session 2>> /var/log/OpenGenova/scripts.log
+mkdir -p /etc/guest-session/skel/.config/dconf 2>> /var/log/OpenGenova/scripts.log
+cp -f /usr/share/OpenGenova/theme/guest-user-skel /etc/guest-session/skel/.config/dconf/user 2>> /var/log/OpenGenova/scripts.log
 
 # Telegram install
 LC_ALL=C.UTF-8 add-apt-repository ppa:atareao/telegram -y
 apt-get update
-apt-get install telegram
+apt-get install telegram 2>> /var/log/OpenGenova/apt.log
 
