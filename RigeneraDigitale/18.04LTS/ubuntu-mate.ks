@@ -241,7 +241,7 @@ mkdir -p /etc/skel/.config/dconf 2>> /var/log/OpenGenova/scripts.log
 mkdir -p /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
 
 cd /etc/skel
-tar xzvf  /usr/share/OpenGenova/theme/skel.tar.bz2 2>> /var/log/OpenGenova/scripts.log
+tar xjvf  /usr/share/OpenGenova/theme/skel.tar.bz2 2>> /var/log/OpenGenova/scripts.log
 cd -
 
 cp rssNotifier.yaml /etc/skel/.rssNotifier.yaml 2>> /var/log/OpenGenova/scripts.log
