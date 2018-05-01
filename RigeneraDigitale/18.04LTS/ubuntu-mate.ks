@@ -164,9 +164,9 @@ cd /tmp
 # rm -f arc-theme-all.deb
 
 ### TODO 18.04
-# wget -O Ultra-Flat-Orange.deb https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/ultra-flat-icons-orange_1.3.2~trusty~Noobslab.com_all.deb
-# gdebi -n -q Ultra-Flat-Orange.deb
-# rm -f Ultra-Flat-Orange.deb
+wget -O Ultra-Flat-Orange.deb https://launchpad.net/~noobslab/+archive/ubuntu/icons/+files/ultra-flat-icons-orange_1.3.2~xenial~Noobslab.com_all.deb
+gdebi -n -q Ultra-Flat-Orange.deb
+rm -f Ultra-Flat-Orange.deb
 
 ### TODO remove?
 # wget -O mintmenu_5.5.2-0~eugenesan~trusty1_all.deb http://ppa.launchpad.net/eugenesan/ppa/ubuntu/pool/main/m/mintmenu/mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
@@ -176,8 +176,8 @@ cd /tmp
 
 if [ $(uname --machine) = "x86_64" ]; then
   wget https://repo.skype.com/latest/skypeforlinux-64.deb
-  gdebi -n -q skypeforlinux-64.deb
-  rm -f skypeforlinux-64.deb 2>> /var/log/OpenGenova/apt.log
+  gdebi -n -q skypeforlinux-64.deb 2>> /var/log/OpenGenova/apt.log
+  rm -f skypeforlinux-64.deb
 else
   wget https://github.com/stanfieldr/ghetto-skype/releases/download/v1.5.0/ghetto-skype_1.5.0_i386.deb
   gdebi -n -q ghetto-skype_1.5.0_i386.deb
@@ -195,6 +195,8 @@ wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/user.png
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/lightdm-gtk-greeter.conf
 wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/theme/guest-user-skel?raw=true
+# TODO temporary TESTING path
+wget -O user-skel http://mirror.opengenova.org/RigeneraDigitale/18.04/user
 cp -f lightdm-gtk-greeter.conf /etc/lightdm
 
 #Let's apply our alredy set changes
@@ -234,6 +236,8 @@ cp Configurazione_xLiguria.desktop /usr/share/applications
 pwd >> /var/log/OpenGenova/scripts.log
 mkdir -p /etc/skel/.config/dconf 2>> /var/log/OpenGenova/scripts.log
 mkdir -p /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
+cp -f /usr/share/OpenGenova/theme/user-skel /etc/skel/.config/dconf/user 2>> /var/log/OpenGenova/scripts.log
+
 cp rssNotifier.yaml /etc/skel/.rssNotifier.yaml 2>> /var/log/OpenGenova/scripts.log
 # TODO user settings cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf
 cp xliguria.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
