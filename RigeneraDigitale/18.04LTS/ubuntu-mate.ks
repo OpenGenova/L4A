@@ -193,11 +193,14 @@ wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/desktop.png
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/login.png
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/user.png
-wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/lightdm-gtk-greeter.conf
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/lightdm-gtk-greeter.conf
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/slick-greeter.conf
 wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/theme/guest-user-skel?raw=true
-# TODO temporary TESTING path
-wget -O user-skel http://mirror.opengenova.org/RigeneraDigitale/18.04/user
-cp -f lightdm-gtk-greeter.conf /etc/lightdm
+# download skel tarball.
+wget -q http://mirror.opengenova.org/RigeneraDigitale/18.04/skel.tar.bz2
+
+cp -f lightdm-gtk-greeter.conf /etc/lightdm 2>> /var/log/OpenGenova/scripts.log
+cp -f slick-greeter.conf /etc/lightdm 2>> /var/log/OpenGenova/scripts.log
 
 #Let's apply our alredy set changes
 ### TODO 18.04 home based on arch
@@ -236,7 +239,10 @@ cp Configurazione_xLiguria.desktop /usr/share/applications
 pwd >> /var/log/OpenGenova/scripts.log
 mkdir -p /etc/skel/.config/dconf 2>> /var/log/OpenGenova/scripts.log
 mkdir -p /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
-cp -f /usr/share/OpenGenova/theme/user-skel /etc/skel/.config/dconf/user 2>> /var/log/OpenGenova/scripts.log
+
+cd /etc/skel
+tar xzvf  /usr/share/OpenGenova/theme/skel.tar.bz2 2>> /var/log/OpenGenova/scripts.log
+cd -
 
 cp rssNotifier.yaml /etc/skel/.rssNotifier.yaml 2>> /var/log/OpenGenova/scripts.log
 # TODO user settings cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf

@@ -1,0 +1,8 @@
+user skelethon is needed to add new user (as well as the default one) with the same configuration.
+The kickstart file (preseed) needs to download a tarball of skel directory from mirror.opengenova.org,
+to simplify that.
+
+To release this file do the following comands:
+cd skel
+tar ../skel.tar.bz2 .
+and then upload it to mirror.opengenova.it.
