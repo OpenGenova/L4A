@@ -197,11 +197,13 @@ wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/login.png
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/theme/user.png
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/lightdm-gtk-greeter.conf
+wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/lightdm.conf
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/slick-greeter.conf
 wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/theme/guest-user-skel?raw=true
 # download skel tarball.
 wget -q http://mirror.opengenova.org/RigeneraDigitale/18.04/skel.tar.bz2
 
+cp -f lightdm.conf /etc/lightdm 2>> /var/log/OpenGenova/scripts.log
 cp -f lightdm-gtk-greeter.conf /etc/lightdm 2>> /var/log/OpenGenova/scripts.log
 cp -f slick-greeter.conf /etc/lightdm 2>> /var/log/OpenGenova/scripts.log
 
