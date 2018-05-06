@@ -6,10 +6,10 @@
 #preseed preseed/file=/cdrom/preseed/ubuntu-server-minimalvm.seed
 
 #System language
-lang it_IT
+lang it_IT.UTF-8
 
 # Language modules to install
-langsupport it_IT
+langsupport it_IT.UTF-8
 
 # System keyboard
 keyboard it
