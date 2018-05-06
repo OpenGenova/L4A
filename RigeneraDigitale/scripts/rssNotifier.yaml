@@ -1,47 +1,35 @@
 channels:
 - enabled: true
-  name: Bar Sport
-  url: http://xliguria.it/rubriche/barsport/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
+  icon: /usr/share/OpenGenova/scripts/radio-babboleo.png
+  name: Babboleo
+  url: http://www.babboleo.it/feed/
 - enabled: true
-  name: Lady P
-  url: http://xliguria.it/rubriche/ladyp/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: Pausa Cafe
-  url: http://xliguria.it/rubriche/pausacafe/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: XLevante
-  url: http://xliguria.it/rubriche/xlevante/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: Mortaio Veleni
-  url: http://xliguria.it/rubriche/mortaioveleni/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: Extra Sport
-  url: http://xliguria.it/rubriche/extrasport/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: Extra Doria
-  url: http://xliguria.it/rubriche/extradoria/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: Extra Genoa
-  url: http://xliguria.it/rubriche/extragenoa/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: XLive
-  url: http://xliguria.it/rubriche/xlive/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
-- enabled: false
-  name: Ricetta
-  url: http://xliguria.it/rubriche/ricetta/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
+  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  name: Comune_Avvisi_istituzionali
+  url: http://www.comune.genova.it/rss/avvisi-istituzionali
 - enabled: true
-  name: XWeil
-  url: http://xliguria.it/rubriche/xweil/feed/
-  icon: "/usr/share/OpenGenova/scripts/xliguria.png"
+  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  name: Comune_Notizie
+  url: http://www.comune.genova.it/rss/notizie
+- enabled: false
+  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  name: Comune_Notizie_flash
+  url: http://www.comune.genova.it/rss/notizie-flash
+- enabled: false
+  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  name: Comune_Antichi_mestieri
+  url: http://www.comune.genova.it/rss/antichimestieri
+- enabled: false
+  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  name: Comune_Sedute
+  url: http://www.comune.genova.it/rss/sedute
+- enabled: false
+  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  name: Comune_VI_Notizie_istituzionali
+  url: http://www.comune.genova.it/rss/municipiovi/notizie-istituzionali
+- enabled: false
+  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  name: Comune_VI_Notizie
+  url: http://www.comune.genova.it/rss/municipiovi/notizie
 settings:
   update_interval: 60

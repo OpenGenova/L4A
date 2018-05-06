@@ -233,6 +233,7 @@ wget -O rssNotifier.yaml https://github.com/OpenGenova/L4A/blob/master/RigeneraD
 # TODO (remove?) cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
 # TODO chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
 wget -O xliguria.png https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.png?raw=true
+wget -O radio-babboleo.png https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/radio-babboleo.png?raw=true
 wget -O xliguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.desktop?raw=true
 wget -O Configurazione_xLiguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/Configurazione_xLiguria.desktop?raw=true
 cp Configurazione_xLiguria.desktop /usr/share/applications
@@ -253,11 +254,6 @@ cp rssNotifier.yaml /etc/skel/.rssNotifier.yaml 2>> /var/log/OpenGenova/scripts.
 # TODO user settings cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf
 cp xliguria.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
 
-# something in our menu is not available for guest user
-# let's add a new skel for guest based on the our one but with default menu
-cp -r /etc/skel /etc/guest-session 2>> /var/log/OpenGenova/scripts.log
-mkdir -p /etc/guest-session/skel/.config/dconf 2>> /var/log/OpenGenova/scripts.log
-cp -f /usr/share/OpenGenova/theme/guest-user-skel /etc/guest-session/skel/.config/dconf/user 2>> /var/log/OpenGenova/scripts.log
 
 # Telegram install
 LC_ALL=C.UTF-8 add-apt-repository ppa:atareao/telegram -y
