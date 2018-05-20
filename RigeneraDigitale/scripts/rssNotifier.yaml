@@ -1,35 +1,43 @@
 channels:
 - enabled: true
+  group: Radio Babboleo
   icon: /usr/share/OpenGenova/scripts/radio-babboleo.png
   name: Babboleo
   url: http://www.babboleo.it/feed/
 - enabled: true
+  group: Comune di Genova
   icon: /usr/share/OpenGenova/theme/Applicazioni.png
-  name: Comune_Avvisi_istituzionali
+  name: Avvisi istituzionali
   url: http://www.comune.genova.it/rss/avvisi-istituzionali
 - enabled: true
+  group: Comune di Genova
   icon: /usr/share/OpenGenova/theme/Applicazioni.png
-  name: Comune_Notizie
+  name: Notizie
   url: http://www.comune.genova.it/rss/notizie
 - enabled: false
+  group: Comune di Genova
   icon: /usr/share/OpenGenova/theme/Applicazioni.png
-  name: Comune_Notizie_flash
+  name: Notizie flash
   url: http://www.comune.genova.it/rss/notizie-flash
 - enabled: false
+  group: Comune di Genova
   icon: /usr/share/OpenGenova/theme/Applicazioni.png
-  name: Comune_Antichi_mestieri
+  name: Antichi mestieri
   url: http://www.comune.genova.it/rss/antichimestieri
 - enabled: false
+  group: Comune di Genova
   icon: /usr/share/OpenGenova/theme/Applicazioni.png
-  name: Comune_Sedute
+  name: Sedute
   url: http://www.comune.genova.it/rss/sedute
 - enabled: false
+  group: Comune di Genova
   icon: /usr/share/OpenGenova/theme/Applicazioni.png
-  name: Comune_VI_Notizie_istituzionali
+  name: VI Notizie_istituzionali
   url: http://www.comune.genova.it/rss/municipiovi/notizie-istituzionali
 - enabled: false
+  group: Comune di Genova
   icon: /usr/share/OpenGenova/theme/Applicazioni.png
-  name: Comune_VI_Notizie
+  name: VI Notizie
   url: http://www.comune.genova.it/rss/municipiovi/notizie
 settings:
   update_interval: 60

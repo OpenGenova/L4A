@@ -72,6 +72,10 @@ class TableWindow(Gtk.Window):
         box_outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(box_outer)
 
+        stack = Gtk.Stack()
+        stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
+        stack.set_transition_duration(1000)
+
         # add generic group if not present to avoid crash soon after
         for ch in self.config.content["channels"]:
           if 'group' not in ch.keys():
@@ -84,8 +88,8 @@ class TableWindow(Gtk.Window):
               if group_name != ch['group'] :
                 listbox = Gtk.ListBox()
                 listbox.set_selection_mode(Gtk.SelectionMode.NONE)
-                box_outer.pack_start(listbox, True, True, 0)
                 group_name = ch['group']
+                stack.add_titled(listbox, group_name, group_name)
 
               row = Gtk.ListBoxRow()
               hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
@@ -104,6 +108,11 @@ class TableWindow(Gtk.Window):
 
               listbox.add(row)
         
+        stack_switcher = Gtk.StackSwitcher()
+        stack_switcher.set_stack(stack)
+        box_outer.pack_start(stack_switcher, True, True, 0)
+        box_outer.pack_start(stack, True, True, 0)
+
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
         box_outer.pack_start(hbox, True, True, 0)
         button = Gtk.Button.new_with_label("Salva")
