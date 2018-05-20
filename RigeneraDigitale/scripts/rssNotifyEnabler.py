@@ -72,13 +72,21 @@ class TableWindow(Gtk.Window):
         box_outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.add(box_outer)
 
-        listbox = Gtk.ListBox()
-        listbox.set_selection_mode(Gtk.SelectionMode.NONE)
-        box_outer.pack_start(listbox, True, True, 0)
-        
-        for ch in (sorted(self.config.content["channels"], key=lambda ch: ch['name'])) :
+        # add generic group if not present to avoid crash soon after
+        for ch in self.config.content["channels"]:
+          if 'group' not in ch.keys():
+            ch['group'] = "Other"
+
+        group_name = None
+        for ch in (sorted(self.config.content["channels"], key=lambda ch: (ch['group'], ch['name']))) :
           if "url" in ch.keys() and "enabled" in ch.keys():
             if ("name" in ch.keys()) :
+              if group_name != ch['group'] :
+                listbox = Gtk.ListBox()
+                listbox.set_selection_mode(Gtk.SelectionMode.NONE)
+                box_outer.pack_start(listbox, True, True, 0)
+                group_name = ch['group']
+
               row = Gtk.ListBoxRow()
               hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
               row.add(hbox)
