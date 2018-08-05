@@ -197,9 +197,10 @@ else
   rm -f ghetto-skype_1.6.0_i386.deb
 
   #welcome rigenera
-  wget -O rigenera-app_1.3.0_i686.deb https://github.com/OpenGenova/welcomerigenera/blob/master/build-app/rigenera-app_1.3.0_i686.deb?raw=true
-  gdebi -n -q rigenera-app_1.3.0_i686.deb  2>> /var/log/OpenGenova/apt.log
-  rm -f rigenera-app_1.3.0_i686.deb
+  echo "rigenera-app_1.3.0_i386.deb" >> /var/log/OpenGenova/apt.log
+  wget -O rigenera-app_1.3.0_i386.deb https://github.com/OpenGenova/welcomerigenera/blob/master/build-app/rigenera-app_1.3.0_i386.deb?raw=true
+  gdebi -n -q rigenera-app_1.3.0_i386.deb  2>> /var/log/OpenGenova/apt.log
+  rm -f rigenera-app_1.3.0_i386.deb
 fi
 
 cd -
@@ -214,7 +215,7 @@ wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/lightdm-gtk-greeter.conf
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/lightdm.conf
 wget -q https://raw.githubusercontent.com/OpenGenova/L4A/master/RigeneraDigitale/18.04LTS/theme/slick-greeter.conf
-wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/theme/guest-user-skel?raw=true
+# wget -O guest-user-skel https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/theme/guest-user-skel?raw=true
 # download skel tarball.
 wget -q http://mirror.opengenova.org/RigeneraDigitale/18.04/skel.tar.bz2
 
