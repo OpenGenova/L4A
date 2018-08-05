@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[it_IT]=/usr/share/OpenGenova/scripts/OpenGenovaLogo.png
+Name[it_IT]=OpenGenova configurazione notifiche rss
+Exec=/usr/share/OpenGenova/scripts/rssNotifyEnabler.py
+Comment[it_IT]=Configura le news
+Name=xLiguria setup
+Comment=Configure rss news
+Icon=/usr/share/OpenGenova/scripts/OpenGenovaLogo.png
+Categories=Utility;

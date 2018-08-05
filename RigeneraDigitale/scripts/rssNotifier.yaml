@@ -6,37 +6,37 @@ channels:
   url: http://www.babboleo.it/feed/
 - enabled: true
   group: Comune di Genova
-  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  icon: /usr/share/OpenGenova/scripts/stemma_comune_genova.png
   name: Avvisi istituzionali
   url: http://www.comune.genova.it/rss/avvisi-istituzionali
 - enabled: true
   group: Comune di Genova
-  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  icon: /usr/share/OpenGenova/scripts/stemma_comune_genova.png
   name: Notizie
   url: http://www.comune.genova.it/rss/notizie
 - enabled: false
   group: Comune di Genova
-  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  icon: /usr/share/OpenGenova/scripts/stemma_comune_genova.png
   name: Notizie flash
   url: http://www.comune.genova.it/rss/notizie-flash
 - enabled: false
   group: Comune di Genova
-  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  icon: /usr/share/OpenGenova/scripts/stemma_comune_genova.png
   name: Antichi mestieri
   url: http://www.comune.genova.it/rss/antichimestieri
 - enabled: false
   group: Comune di Genova
-  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  icon: /usr/share/OpenGenova/scripts/stemma_comune_genova.png
   name: Sedute
   url: http://www.comune.genova.it/rss/sedute
 - enabled: false
   group: Comune di Genova
-  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  icon: /usr/share/OpenGenova/scripts/stemma_comune_genova.png
   name: VI Notizie_istituzionali
   url: http://www.comune.genova.it/rss/municipiovi/notizie-istituzionali
 - enabled: false
   group: Comune di Genova
-  icon: /usr/share/OpenGenova/theme/Applicazioni.png
+  icon: /usr/share/OpenGenova/scripts/stemma_comune_genova.png
   name: VI Notizie
   url: http://www.comune.genova.it/rss/municipiovi/notizie
 settings:

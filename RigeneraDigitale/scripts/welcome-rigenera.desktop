@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=welcomerigenera
+GenericName=Welcome and help Rigenera Digitale
+Comment=get last news from xliguria
+Exec=/usr/lib/rigenera-app/rigenera-app
+Terminal=false
+Type=Application
+Icon=/usr/share/OpenGenova/scripts/OpenGenovaLogo.png
+Categories=Network;FileTransfer;
+StartupNotify=false

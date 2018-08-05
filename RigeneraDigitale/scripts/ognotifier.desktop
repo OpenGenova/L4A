@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=xLiguria
-GenericName=xliguria rss feed
-Comment=get last news from xliguria
+Name=OGNotifier
+GenericName=OpenGenova rss suggested feed
+Comment=get last news 
 Exec=/usr/share/OpenGenova/scripts/rssNotifier.py
 Terminal=false
 Type=Application
-Icon=/usr/share/OpenGenova/scripts/xliguria.png
+Icon=/usr/share/OpenGenova/scripts/OpenGenovaLogo.png
 Categories=Network;FileTransfer;
 StartupNotify=false

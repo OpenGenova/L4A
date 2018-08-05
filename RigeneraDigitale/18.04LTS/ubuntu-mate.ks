@@ -136,6 +136,8 @@ gimp
 chromium-browser
 inkscape
 
+#Mate notifyd fails for links
+xfce4-notifyd
 #rss notifier
 python-yaml
 python-notify
@@ -177,14 +179,27 @@ rm -f Ultra-Flat-Orange.deb
 # rm -f mintmenu_5.5.2-0~eugenesan~trusty1_all.deb
 
 
+#packages that are different for arch
 if [ $(uname --machine) = "x86_64" ]; then
+  #SKYPE
   wget https://repo.skype.com/latest/skypeforlinux-64.deb
   gdebi -n -q skypeforlinux-64.deb 2>> /var/log/OpenGenova/apt.log
   rm -f skypeforlinux-64.deb
+
+  #welcome rigenera
+  wget -O rigenera-app_1.3.0_amd64.deb https://github.com/OpenGenova/welcomerigenera/blob/master/build-app/rigenera-app_1.3.0_amd64.deb?raw=true
+  gdebi -n -q rigenera-app_1.3.0_amd64.deb  2>> /var/log/OpenGenova/apt.log
+  rm -f rigenera-app_1.3.0_amd64.deb
 else
+  #SKYPE
   wget https://github.com/stanfieldr/ghetto-skype/releases/download/v1.6.0/ghetto-skype_1.6.0_i386.deb
   gdebi -n -q ghetto-skype_1.6.0_i386.deb 2>> /var/log/OpenGenova/apt.log
   rm -f ghetto-skype_1.6.0_i386.deb
+
+  #welcome rigenera
+  wget -O rigenera-app_1.3.0_i686.deb https://github.com/OpenGenova/welcomerigenera/blob/master/build-app/rigenera-app_1.3.0_i686.deb?raw=true
+  gdebi -n -q rigenera-app_1.3.0_i686.deb  2>> /var/log/OpenGenova/apt.log
+  rm -f rigenera-app_1.3.0_i686.deb
 fi
 
 cd -
@@ -215,7 +230,7 @@ cp -f slick-greeter.conf /etc/lightdm 2>> /var/log/OpenGenova/scripts.log
 # rm -rf opengenova
 # tar xjvf /usr/share/OpenGenova/opengenova-home.tar.bz2
 
-#Let's install rss notifier (xliguria) scripts
+#Let's install rss notifier (Open Genova notifier) scripts
 # remove feedparser here if works in packages section
 #pip install --disable-pip-version-check -q feedparser
 apt-get install -y python-feedparser 2>> /var/log/OpenGenova/apt.log
@@ -232,14 +247,14 @@ wget -O rssNotifier.yaml https://github.com/OpenGenova/L4A/blob/master/RigeneraD
 # NOTE home does not exist yet
 # TODO (remove?) cp rssNotifier.yaml /home/opengenova/.rssNotifier.yaml
 # TODO chown -R 1000:1000 /home/opengenova/.rssNotifier.yaml
-wget -O xliguria.png https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.png?raw=true
+wget -O OpenGenovaLogo.png https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/OpenGenovaLogo.png?raw=true
 wget -O radio-babboleo.png https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/radio-babboleo.png?raw=true
-wget -O xliguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/xliguria.desktop?raw=true
-wget -O Configurazione_xLiguria.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/Configurazione_xLiguria.desktop?raw=true
-cp Configurazione_xLiguria.desktop /usr/share/applications
-# TODO mkdir -p /home/opengenova/.config/autostart
-# TODO cp xliguria.desktop /home/opengenova/.config/autostart
-# TODO chown -R 1000:1000 /home/opengenova/.config
+# From Comune di Genova - comune news
+wget -O stemma_comune_genova.png http://www.comune.genova.it/sites/default/files/ingrandimento_stemma_comune_1_1.jpg
+wget -O ognotifier.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/ognotifier.desktop?raw=true
+wget -O welcome-rigenera.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/welcome-rigenera.desktop?raw=true
+wget -O Configurazione_ognotifier.desktop https://github.com/OpenGenova/L4A/blob/master/RigeneraDigitale/scripts/Configurazione_ognotifier.desktop?raw=true
+cp Configurazione_ognotifier.desktop /usr/share/applications
 
 #let's change user skel
 pwd >> /var/log/OpenGenova/scripts.log
@@ -252,7 +267,8 @@ cd -
 
 cp rssNotifier.yaml /etc/skel/.rssNotifier.yaml 2>> /var/log/OpenGenova/scripts.log
 # TODO user settings cp /home/opengenova/.config/dconf/user /etc/skel/.config/dconf
-cp xliguria.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
+cp ognotifier.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
+cp welcome-rigenera.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
 
 
 # Telegram install
