@@ -270,6 +270,8 @@ cp rssNotifier.yaml /etc/skel/.rssNotifier.yaml 2>> /var/log/OpenGenova/scripts.
 cp ognotifier.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
 cp welcome-rigenera.desktop /etc/skel/.config/autostart 2>> /var/log/OpenGenova/scripts.log
 
+# NOTE Disable org.freedesktop.mate.Notifications.service to use xfce4.notifyd
+mv /usr/share/dbus-1/services/org.freedesktop.mate.Notifications.service /usr/share/dbus-1/services/org.freedesktop.mate.Notifications.service.disable
 
 # Telegram install
 LC_ALL=C.UTF-8 add-apt-repository ppa:atareao/telegram -y
