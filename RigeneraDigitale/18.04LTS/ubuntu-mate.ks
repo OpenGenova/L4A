@@ -187,9 +187,9 @@ if [ $(uname --machine) = "x86_64" ]; then
   rm -f skypeforlinux-64.deb
 
   #welcome rigenera
-  wget -O rigenera-app_1.3.0_amd64.deb https://github.com/OpenGenova/welcomerigenera/blob/master/build-app/rigenera-app_1.3.0_amd64.deb?raw=true
-  gdebi -n -q rigenera-app_1.3.0_amd64.deb  2>> /var/log/OpenGenova/apt.log
-  rm -f rigenera-app_1.3.0_amd64.deb
+  wget -O rigenera-app_1.3.1_amd64.deb  https://github.com/OpenGenova/welcomerigenera/releases/download/v1.3.1/rigenera-app_1.3.1_amd64.deb
+  gdebi -n -q rigenera-app_1.3.1_amd64.deb  2>> /var/log/OpenGenova/apt.log
+  rm -f rigenera-app_1.3.1_amd64.deb
 else
   #SKYPE
   wget https://github.com/stanfieldr/ghetto-skype/releases/download/v1.6.0/ghetto-skype_1.6.0_i386.deb
@@ -197,10 +197,10 @@ else
   rm -f ghetto-skype_1.6.0_i386.deb
 
   #welcome rigenera
-  echo "rigenera-app_1.3.0_i386.deb" >> /var/log/OpenGenova/apt.log
-  wget -O rigenera-app_1.3.0_i386.deb https://github.com/OpenGenova/welcomerigenera/blob/master/build-app/rigenera-app_1.3.0_i386.deb?raw=true
-  gdebi -n -q rigenera-app_1.3.0_i386.deb  2>> /var/log/OpenGenova/apt.log
-  rm -f rigenera-app_1.3.0_i386.deb
+  echo "rigenera-app_1.3.1_i386.deb" >> /var/log/OpenGenova/apt.log
+  wget -O rigenera-app_1.3.1_i386.deb https://github.com/OpenGenova/welcomerigenera/releases/download/v1.3.1/rigenera-app_1.3.1_i386.deb
+  gdebi -n -q rigenera-app_1.3.1_i386.deb  2>> /var/log/OpenGenova/apt.log
+  rm -f rigenera-app_1.3.1_i386.deb
 fi
 
 cd -
